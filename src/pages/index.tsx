@@ -1,11 +1,10 @@
 import React from "react";
 import { Box, Center, Flex, Input, Button, Text } from "@chakra-ui/react";
-
+// login
 const Index: React.VFC = () => {
   return (
     <>
       <Box pos="relative">
-        <Box w="100%" h="700px" bg="cyan.800" />
         <Box h="400px" w="100%" pos="absolute" top="150px" left="0">
           <Flex align="center" justifyContent="center">
             <Box
