@@ -1,33 +1,44 @@
 import React from "react";
-import { Box, Center, Flex, Input, Button } from "@chakra-ui/react";
+import { Box, Center, Flex, Input, Button, Text } from "@chakra-ui/react";
 
 const Index: React.VFC = () => {
   return (
     <>
       <Box pos="relative">
-        <Box w="100%" h="300px" bg="green.400">
-          <Center h="130px" fontSize="6xl" color="white">
-            Radio Programs
-          </Center>
-        </Box>
+        <Box w="100%" h="700px" bg="cyan.800" />
         <Box h="400px" w="100%" pos="absolute" top="150px" left="0">
           <Flex align="center" justifyContent="center">
-            {/* mobile対応したかったらwの%を変更 */}
-            <Box bg="white" h="480px" w="40%" borderRadius="25px" p={5}>
-              <Center h="100px" fontSize="2xl">
-                ログイン
+            <Box
+              bg="white"
+              h="480px"
+              w="40%"
+              borderRadius="25px"
+              pt={10}
+              pr={10}
+              pl={10}
+              boxShadow="lg"
+            >
+              <Center h="100px" fontSize="3xl" color="cyan.900" p={5}>
+                Log in to your account.
               </Center>
-              <Box p={4}>
-                <Input placeholder="mail" />
+              <Box pl={16} pr={16} pt={2} pb={2}>
+                <Box p={4}>
+                  <Input placeholder="mail" />
+                </Box>
+                <Box p={4}>
+                  <Input placeholder="password" />
+                </Box>
               </Box>
-              <Box p={4}>
-                <Input placeholder="password" />
-              </Box>
-              <Box p={4}>
+              <Box p={1}>
                 <Flex align="center" justifyContent="center">
-                  <Button colorScheme="blue">Sign In</Button>
+                  <Button colorScheme="blue" size="lg">
+                    Sign In
+                  </Button>
                 </Flex>
               </Box>
+              <Text fontSize="sm" align="right" pl={16} pr={16} pt={10}>
+                You do not have any account?
+              </Text>
             </Box>
           </Flex>
         </Box>
