@@ -39,7 +39,7 @@ const SignIn: React.VFC = () => {
   return (
     <>
       <Box pos="relative">
-        <Box h="400px" w="100%" pos="absolute" top="150px" left="0">
+        <Box w="100%" pos="absolute" top="150px" left="0">
           <Flex align="center" justifyContent="center">
             <Box
               bg="white"
@@ -85,7 +85,7 @@ const SignIn: React.VFC = () => {
                     </Text>
                   </Center>
                   <Button
-                    colorScheme="cyan"
+                    colorScheme="blackAlpha"
                     mt={5}
                     color="white"
                     size="sm"
