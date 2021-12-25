@@ -20,8 +20,7 @@ const SignIn: React.VFC = () => {
     signInWithPopup(auth, provider)
       .then((result) => {
         const user = result.user;
-        console.log("pass");
-        console.log(user);
+        router.push(`/user/${user.uid}`);
       })
       .catch((error) => {
         console.log(error);
@@ -76,7 +75,13 @@ const SignIn: React.VFC = () => {
                       Sign in with Google
                     </Text>
                   </Center>
-                  <Button colorScheme="cyan" mt={5} color="white" size="sm">
+                  <Button
+                    colorScheme="cyan"
+                    mt={5}
+                    color="white"
+                    size="sm"
+                    fontWeight="bold"
+                  >
                     Radio Programsとは？
                   </Button>
                 </SimpleGrid>
