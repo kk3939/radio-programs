@@ -23,9 +23,9 @@ const SignIn: React.VFC = () => {
       .then(async (result) => {
         const user: User = result.user;
         const docData: UserDoc = {
-          uid: user.uid,
-          photoURL: user.photoURL,
-          displayName: user.displayName,
+          id: user.uid,
+          photoUrl: user.photoURL,
+          name: user.displayName,
           radios: [],
         };
         await setDoc(doc(db, "users", user.uid), docData);

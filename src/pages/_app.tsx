@@ -21,12 +21,12 @@ function MyApp({ Component, pageProps }: AppProps) {
   const [user, setUser] = useState<User | null>(null);
   onAuthStateChanged(auth, (callbackUser) => {
     if (callbackUser) {
-      console.log(callbackUser);
       setUser(callbackUser);
     } else {
       setUser(null);
     }
   });
+  console.log(user);
   return (
     <ChakraProvider theme={theme}>
       <UserContext.Provider value={user}>
@@ -36,4 +36,5 @@ function MyApp({ Component, pageProps }: AppProps) {
   );
 }
 
+MyApp.getInitialProps = async () => ({ pageProps: {} });
 export default MyApp;
