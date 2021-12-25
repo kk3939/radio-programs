@@ -1,6 +1,9 @@
 /* eslint-disable react/react-in-jsx-scope */
 import type { AppProps } from "next/app";
 import { ChakraProvider, extendTheme } from "@chakra-ui/react";
+import { onAuthStateChanged, User } from "firebase/auth";
+import { auth } from "../../firebase";
+import { createContext, useState } from "react";
 
 const theme = extendTheme({
   styles: {
@@ -12,10 +15,23 @@ const theme = extendTheme({
   },
 });
 
+export const UserContext = createContext<User | null>(null);
+
 function MyApp({ Component, pageProps }: AppProps) {
+  const [user, setUser] = useState<User | null>(null);
+  onAuthStateChanged(auth, (callbackUser) => {
+    if (callbackUser) {
+      console.log(callbackUser);
+      setUser(callbackUser);
+    } else {
+      setUser(null);
+    }
+  });
   return (
     <ChakraProvider theme={theme}>
-      <Component {...pageProps} />
+      <UserContext.Provider value={user}>
+        <Component {...pageProps} />
+      </UserContext.Provider>
     </ChakraProvider>
   );
 }
