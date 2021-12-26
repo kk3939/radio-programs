@@ -14,6 +14,7 @@ import { auth, db } from "../../firebase";
 import { useRouter } from "next/router";
 import { doc, setDoc } from "firebase/firestore";
 import { UserDoc } from "../types/global";
+import Layout from "../components/Layout";
 
 const SignIn: React.VFC = () => {
   const provider: GoogleAuthProvider = new GoogleAuthProvider();
@@ -38,67 +39,67 @@ const SignIn: React.VFC = () => {
   };
   return (
     <>
-      <Box pos="relative">
-        <Box w="100%" pos="absolute" top="150px" left="0">
-          <Flex align="center" justifyContent="center">
-            <Box
-              bg="white"
-              h="400px"
-              w="30%"
-              borderRadius="25px"
-              pt={10}
-              pr={10}
-              pl={10}
-              boxShadow="lg"
+      <Layout>
+        <Box h="150px" />
+        <Center>
+          <Box
+            bg="white"
+            h="400px"
+            w="30%"
+            borderRadius="25px"
+            pt={10}
+            pr={10}
+            pl={10}
+            boxShadow="lg"
+          >
+            <Center
+              h="100px"
+              fontSize="3xl"
+              color="black"
+              p={5}
+              fontWeight="bold"
             >
-              <Center
-                h="100px"
-                fontSize="3xl"
-                color="black"
-                p={5}
-                fontWeight="bold"
-              >
-                Log in to your account.
-              </Center>
-              <Center>
-                <SimpleGrid columns={1} spacing={2} pr={8} pl={8} pt={2} pb={2}>
-                  <Center>
-                    <Icon
-                      role="button"
-                      as={FcGoogle}
-                      w={16}
-                      h={16}
-                      onClick={() => {
-                        signInWithGoogle();
-                      }}
-                    />
-                  </Center>
-                  <Center>
-                    <Text
-                      color="gray.400"
-                      role="button"
-                      onClick={() => {
-                        signInWithGoogle();
-                      }}
-                    >
-                      Sign in with Google
-                    </Text>
-                  </Center>
-                  <Button
-                    colorScheme="blackAlpha"
-                    mt={5}
-                    color="white"
-                    size="sm"
-                    fontWeight="bold"
+              Log in to your account.
+            </Center>
+            <Center>
+              <SimpleGrid columns={1} spacing={2} pr={8} pl={8} pt={2} pb={2}>
+                <Center>
+                  <Icon
+                    role="button"
+                    as={FcGoogle}
+                    w={16}
+                    h={16}
+                    onClick={() => {
+                      signInWithGoogle();
+                    }}
+                  />
+                </Center>
+                <Center>
+                  <Text
+                    color="gray.400"
+                    role="button"
+                    onClick={() => {
+                      signInWithGoogle();
+                    }}
                   >
-                    Radio Programsとは？
-                  </Button>
-                </SimpleGrid>
-              </Center>
-            </Box>
-          </Flex>
-        </Box>
-      </Box>
+                    Sign in with Google
+                  </Text>
+                </Center>
+                <Button
+                  colorScheme="blackAlpha"
+                  mt={5}
+                  color="white"
+                  size="sm"
+                  fontWeight="bold"
+                  onClick={() => router.push("/")}
+                >
+                  Radio Programsとは？
+                </Button>
+              </SimpleGrid>
+            </Center>
+          </Box>
+        </Center>
+      </Layout>
     </>
   );
 };
