@@ -9,7 +9,7 @@ const theme = extendTheme({
   styles: {
     global: {
       body: {
-        backgroundColor: "cyan.900",
+        backgroundColor: "cyan.700",
       },
     },
   },
@@ -21,12 +21,12 @@ function MyApp({ Component, pageProps }: AppProps) {
   const [user, setUser] = useState<User | null>(null);
   onAuthStateChanged(auth, (callbackUser) => {
     if (callbackUser) {
-      console.log(callbackUser);
       setUser(callbackUser);
     } else {
       setUser(null);
     }
   });
+
   return (
     <ChakraProvider theme={theme}>
       <UserContext.Provider value={user}>
@@ -36,4 +36,5 @@ function MyApp({ Component, pageProps }: AppProps) {
   );
 }
 
+MyApp.getInitialProps = async () => ({ pageProps: {} });
 export default MyApp;

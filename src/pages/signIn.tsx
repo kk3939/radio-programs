@@ -9,17 +9,26 @@ import {
   SimpleGrid,
 } from "@chakra-ui/react";
 import { FcGoogle } from "react-icons/fc";
-import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
-import { auth } from "../../firebase";
+import { GoogleAuthProvider, signInWithPopup, User } from "firebase/auth";
+import { auth, db } from "../../firebase";
 import { useRouter } from "next/router";
+import { doc, setDoc } from "firebase/firestore";
+import { UserDoc } from "../types/global";
 
 const SignIn: React.VFC = () => {
   const provider: GoogleAuthProvider = new GoogleAuthProvider();
   const router = useRouter();
   const signInWithGoogle = (): void => {
     signInWithPopup(auth, provider)
-      .then((result) => {
-        const user = result.user;
+      .then(async (result) => {
+        const user: User = result.user;
+        const docData: UserDoc = {
+          id: user.uid,
+          photoUrl: user.photoURL,
+          name: user.displayName,
+          radios: [],
+        };
+        await setDoc(doc(db, "users", user.uid), docData);
         router.push(`/user/${user.uid}`);
       })
       .catch((error) => {
@@ -30,7 +39,7 @@ const SignIn: React.VFC = () => {
   return (
     <>
       <Box pos="relative">
-        <Box h="400px" w="100%" pos="absolute" top="150px" left="0">
+        <Box w="100%" pos="absolute" top="150px" left="0">
           <Flex align="center" justifyContent="center">
             <Box
               bg="white"
@@ -76,7 +85,7 @@ const SignIn: React.VFC = () => {
                     </Text>
                   </Center>
                   <Button
-                    colorScheme="cyan"
+                    colorScheme="blackAlpha"
                     mt={5}
                     color="white"
                     size="sm"
