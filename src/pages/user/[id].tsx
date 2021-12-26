@@ -11,7 +11,7 @@ import {
 import { db } from "../../../firebase";
 import { UserContext } from "../_app";
 import { UserDoc } from "../../types/global";
-import { Box, Center, Divider, Flex, SimpleGrid } from "@chakra-ui/react";
+import { Flex, Box, Center, Divider, Image, Text } from "@chakra-ui/react";
 
 const UserPage = () => {
   const router = useRouter();
@@ -61,6 +61,21 @@ const UserPage = () => {
       fetchUserDocs();
     }
   }, [userFromContext]);
+
+  const returnPhotoUrl = (arg: UserDoc): string | undefined => {
+    if (arg.photoUrl === null) {
+      return undefined;
+    }
+    return arg.photoUrl;
+  };
+
+  const returnUserName = (arg: UserDoc): string => {
+    if (arg.name === null) {
+      return "This user's name isn't setup.";
+    }
+    return arg.name;
+  };
+
   return (
     <>
       <Box pos="relative">
@@ -72,40 +87,95 @@ const UserPage = () => {
               bg="white"
               w="70%"
               borderRadius="25px"
-              pt={10}
-              pr={10}
-              pl={10}
+              p={10}
               boxShadow="lg"
             >
-              <Center>
-                <SimpleGrid columns={1} spacing={2} pr={8} pl={8} pt={2} pb={2}>
-                  <h1>ks</h1>
-                  <h1>ks</h1>
-                  <h1>ks</h1>
-                  <h1>ks</h1>
-                  <h1>ks</h1>
-                  <h1>ks</h1>
-                  <h1>ks</h1>
-                  <h1>ks</h1>
-                  <h1>ks</h1>
-                  <h1>ks</h1>
-                  <h1>ks</h1>
-                  <h1>ks</h1>
-                  <h1>ks</h1>
-                  <h1>ks</h1>
-                  <h1>ks</h1>
-                  <h1>ks</h1>
-                  <h1>ks</h1>
-                  <h1>ks</h1>
-                  <h1>ks</h1>
-                  <h1>ks</h1>
-                  <h1>ks</h1>
-                  <h1>ks</h1>
-                  <h1>ks</h1>
-                </SimpleGrid>
+              <Center flexDirection="column">
+                <Image
+                  borderRadius="full"
+                  boxSize="100px"
+                  src={returnPhotoUrl(user)}
+                  alt="user"
+                />
+                <Text fontSize="lg" fontWeight="bold" p={3}>
+                  {returnUserName(user)}
+                </Text>
+                <Divider mb={5} />
+                <Box pl={10} pr={10} w="100%">
+                  <Center flexDirection="column" w="100%">
+                    <Text
+                      pt={2}
+                      pb={2}
+                      color="blackAlpha.700"
+                      fontWeight="bold"
+                      fontSize="sm"
+                    >
+                      your listening radio programs are following....
+                    </Text>
+                    <Box w="100%" p={4}>
+                      <Center>
+                        <Box pl={10} pr={10}>
+                          <Box boxSize="80px" borderRadius="25px" bg="cyan.200">
+                            <Flex
+                              justifyContent="center"
+                              h="100%"
+                              align="center"
+                            >
+                              <Text>emoji</Text>
+                            </Flex>
+                          </Box>
+                        </Box>
+                        <Text fontSize="2xl" fontWeight="bold">
+                          三四郎のオールナイトニッポン0
+                        </Text>
+                      </Center>
+                    </Box>
+                    <Box w="100%" p={4}>
+                      <Center>
+                        <Box pl={10} pr={10}>
+                          <Box boxSize="80px" borderRadius="25px" bg="cyan.200">
+                            <Flex
+                              justifyContent="center"
+                              h="100%"
+                              align="center"
+                            >
+                              <Text>emoji</Text>
+                            </Flex>
+                          </Box>
+                        </Box>
+                        <Text fontSize="2xl" fontWeight="bold">
+                          三四郎のオールナイトニッポン0
+                        </Text>
+                      </Center>
+                    </Box>
+                    <Box w="100%" p={4}>
+                      <Center>
+                        <Box pl={10} pr={10}>
+                          <Box boxSize="80px" borderRadius="25px" bg="cyan.200">
+                            <Flex
+                              justifyContent="center"
+                              h="100%"
+                              align="center"
+                            >
+                              <Text>emoji</Text>
+                            </Flex>
+                          </Box>
+                        </Box>
+                        <Text fontSize="2xl" fontWeight="bold">
+                          三四郎のオールナイトニッポン0
+                        </Text>
+                      </Center>
+                    </Box>
+                  </Center>
+                </Box>
               </Center>
             </Box>
           </Center>
+          <Box h="200px" bg="gray.700" p={10} mt={16}>
+            <Flex align="center" justifyContent="center" h="100%">
+              <Text color="white">kyosuke kubo, All rights reserved.</Text>
+            </Flex>
+          </Box>
         </Box>
       </Box>
     </>
