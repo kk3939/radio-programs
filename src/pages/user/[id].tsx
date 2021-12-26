@@ -1,5 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
-import { useRouter } from "next/router";
+import React, { useState } from "react";
 import {
   doc,
   DocumentData,
@@ -9,7 +8,6 @@ import {
   QueryDocumentSnapshot,
 } from "firebase/firestore";
 import { db } from "../../../firebase";
-import { UserContext } from "../_app";
 import { UserDoc } from "../../types/global";
 import { Flex, Box, Center, Divider, Image, Text } from "@chakra-ui/react";
 import Footer from "../../components/Footer";
@@ -19,6 +17,7 @@ import {
   PreviewData,
 } from "next";
 import { ParsedUrlQuery } from "querystring";
+import Layout from "../../components/Layout";
 
 export const getServerSideProps: GetServerSideProps = async (
   context: GetServerSidePropsContext<ParsedUrlQuery, PreviewData>
@@ -98,102 +97,90 @@ const UserPage: React.VFC<UserDoc> = (userProps) => {
 
   return (
     <>
-      <Box pos="relative" minHeight="100vh">
-        <Box w="100%" pos="absolute" top="100px" left="0">
-          <Center>
-            <Box
-              align="center"
-              justifyContent="center"
-              bg="white"
-              w="70%"
-              borderRadius="25px"
-              p={10}
-              boxShadow="lg"
-            >
-              <Center flexDirection="column">
-                <Image
-                  borderRadius="full"
-                  boxSize="100px"
-                  src={returnPhotoUrl(user)}
-                  alt="user"
-                />
-                <Text fontSize="lg" fontWeight="bold" p={3}>
-                  {returnUserName(user)}
-                </Text>
-                <Divider mb={5} />
-                <Box pl={10} pr={10} w="100%">
-                  <Center flexDirection="column" w="100%">
-                    <Text
-                      pt={2}
-                      pb={2}
-                      color="blackAlpha.700"
-                      fontWeight="bold"
-                      fontSize="sm"
-                    >
-                      your listening radio programs are following....
-                    </Text>
-                    <Box w="100%" p={4}>
-                      <Center>
-                        <Box pl={10} pr={10}>
-                          <Box boxSize="80px" borderRadius="25px" bg="cyan.200">
-                            <Flex
-                              justifyContent="center"
-                              h="100%"
-                              align="center"
-                            >
-                              <Text>emoji</Text>
-                            </Flex>
-                          </Box>
+      <Layout>
+        <Box h="100px" />
+        <Center>
+          <Box
+            align="center"
+            justifyContent="center"
+            bg="white"
+            w="70%"
+            borderRadius="25px"
+            p={10}
+            boxShadow="lg"
+          >
+            <Center flexDirection="column">
+              <Image
+                borderRadius="full"
+                boxSize="100px"
+                src={returnPhotoUrl(user)}
+                alt="user"
+              />
+              <Text fontSize="lg" fontWeight="bold" p={3}>
+                {returnUserName(user)}
+              </Text>
+              <Divider mb={5} />
+              <Box pl={10} pr={10} w="100%">
+                <Center flexDirection="column" w="100%">
+                  <Text
+                    pt={2}
+                    pb={2}
+                    color="blackAlpha.700"
+                    fontWeight="bold"
+                    fontSize="sm"
+                  >
+                    your listening radio programs are following....
+                  </Text>
+                  <Box w="100%" p={4}>
+                    <Center>
+                      <Box pl={10} pr={10}>
+                        <Box boxSize="80px" borderRadius="25px" bg="cyan.200">
+                          <Flex justifyContent="center" h="100%" align="center">
+                            <Text>emoji</Text>
+                          </Flex>
                         </Box>
-                        <Text fontSize="2xl" fontWeight="bold">
-                          三四郎のオールナイトニッポン0
-                        </Text>
-                      </Center>
-                    </Box>
-                    <Box w="100%" p={4}>
-                      <Center>
-                        <Box pl={10} pr={10}>
-                          <Box boxSize="80px" borderRadius="25px" bg="cyan.200">
-                            <Flex
-                              justifyContent="center"
-                              h="100%"
-                              align="center"
-                            >
-                              <Text>emoji</Text>
-                            </Flex>
-                          </Box>
+                      </Box>
+                      <Text fontSize="2xl" fontWeight="bold">
+                        三四郎のオールナイトニッポン0
+                      </Text>
+                    </Center>
+                  </Box>
+                  <Box w="100%" p={4}>
+                    <Center>
+                      <Box pl={10} pr={10}>
+                        <Box boxSize="80px" borderRadius="25px" bg="cyan.200">
+                          <Flex justifyContent="center" h="100%" align="center">
+                            <Text>emoji</Text>
+                          </Flex>
                         </Box>
-                        <Text fontSize="2xl" fontWeight="bold">
-                          三四郎のオールナイトニッポン0
-                        </Text>
-                      </Center>
-                    </Box>
-                    <Box w="100%" p={4}>
-                      <Center>
-                        <Box pl={10} pr={10}>
-                          <Box boxSize="80px" borderRadius="25px" bg="cyan.200">
-                            <Flex
-                              justifyContent="center"
-                              h="100%"
-                              align="center"
-                            >
-                              <Text>emoji</Text>
-                            </Flex>
-                          </Box>
+                      </Box>
+                      <Text fontSize="2xl" fontWeight="bold">
+                        三四郎のオールナイトニッポン0
+                      </Text>
+                    </Center>
+                  </Box>
+                  <Box w="100%" p={4}>
+                    <Center>
+                      <Box pl={10} pr={10}>
+                        <Box boxSize="80px" borderRadius="25px" bg="cyan.200">
+                          <Flex justifyContent="center" h="100%" align="center">
+                            <Text>emoji</Text>
+                          </Flex>
                         </Box>
-                        <Text fontSize="2xl" fontWeight="bold">
-                          三四郎のオールナイトニッポン0
-                        </Text>
-                      </Center>
-                    </Box>
-                  </Center>
-                </Box>
-              </Center>
-            </Box>
-          </Center>
-          <Footer />
-        </Box>
-      </Box>
+                      </Box>
+                      <Text fontSize="2xl" fontWeight="bold">
+                        三四郎のオールナイトニッポン0
+                      </Text>
+                    </Center>
+                  </Box>
+                </Center>
+              </Box>
+            </Center>
+          </Box>
+        </Center>
+        <Box h="250px" />
+        <Footer />
+      </Layout>
     </>
   );
 };

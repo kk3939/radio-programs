@@ -4,6 +4,7 @@ import { ChakraProvider, extendTheme } from "@chakra-ui/react";
 import { onAuthStateChanged, User } from "firebase/auth";
 import { auth } from "../../firebase";
 import { createContext, useState } from "react";
+import "../styles/global.css";
 
 const theme = extendTheme({
   styles: {

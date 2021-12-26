@@ -3,6 +3,8 @@ import Link from "next/link";
 import { Center, Text } from "@chakra-ui/react";
 import { auth } from "../../firebase";
 import { signOut } from "firebase/auth";
+import Footer from "../components/Footer";
+import Layout from "../components/Layout";
 
 const Index: React.VFC = () => {
   const signOutAction = () => {
@@ -16,16 +18,19 @@ const Index: React.VFC = () => {
   };
   return (
     <>
-      <Link href="/signIn">
+      <Layout>
+        <Link href="/signIn">
+          <Center>
+            <Text color="white">login</Text>
+          </Center>
+        </Link>
         <Center>
-          <Text color="white">login</Text>
+          <Text color="white" role="button" onClick={() => signOutAction()}>
+            logout
+          </Text>
         </Center>
-      </Link>
-      <Center>
-        <Text color="white" role="button" onClick={() => signOutAction()}>
-          logout
-        </Text>
-      </Center>
+        <Footer />
+      </Layout>
     </>
   );
 };
