@@ -12,6 +12,7 @@ import { db } from "../../../firebase";
 import { UserContext } from "../_app";
 import { UserDoc } from "../../types/global";
 import { Flex, Box, Center, Divider, Image, Text } from "@chakra-ui/react";
+import Footer from "../../components/Footer";
 
 const UserPage = () => {
   const router = useRouter();
@@ -171,11 +172,7 @@ const UserPage = () => {
               </Center>
             </Box>
           </Center>
-          <Box h="200px" bg="gray.700" p={10} mt={16}>
-            <Flex align="center" justifyContent="center" h="100%">
-              <Text color="white">kyosuke kubo, All rights reserved.</Text>
-            </Flex>
-          </Box>
+          <Footer />
         </Box>
       </Box>
     </>
