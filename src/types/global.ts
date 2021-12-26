@@ -11,3 +11,7 @@ export type Radios = {
     name: string;
   }>;
 };
+
+export type UserState = UserDoc & {
+  isEdit: boolean;
+};

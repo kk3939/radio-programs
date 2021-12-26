@@ -1,8 +1,7 @@
 /* eslint-disable react/react-in-jsx-scope */
 import type { AppProps } from "next/app";
 import { ChakraProvider, extendTheme } from "@chakra-ui/react";
-import { onAuthStateChanged, User } from "firebase/auth";
-import { auth } from "../../firebase";
+import { User } from "firebase/auth";
 import { createContext, useState } from "react";
 import "../styles/global.css";
 import { Provider } from "react-redux";

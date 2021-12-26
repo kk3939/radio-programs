@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   doc,
   DocumentData,
@@ -18,69 +18,10 @@ import {
 } from "next";
 import { ParsedUrlQuery } from "querystring";
 import Layout from "../../components/Layout";
-
-export const getServerSideProps: GetServerSideProps = async (
-  context: GetServerSidePropsContext<ParsedUrlQuery, PreviewData>
-) => {
-  if (context.params === undefined) {
-    return {
-      props: {},
-    };
-  }
-
-  const params = context.params;
-  const id = params.id;
-  const fetchUserDocs = async () => {
-    const initialState: UserDoc = {
-      name: "",
-      photoUrl: "",
-      id: "",
-      radios: [],
-    };
-    if (id === undefined || Array.isArray(id)) {
-      return initialState;
-    }
-    const converter = () => ({
-      toFirestore: (data: UserDoc) => data,
-      fromFirestore: (
-        snapshot: QueryDocumentSnapshot<DocumentData>
-      ): UserDoc => {
-        const data = snapshot.data();
-        return {
-          id: data.id,
-          name: data.name,
-          photoUrl: data.photoUrl,
-          radios: data.radios,
-        };
-      },
-    });
-
-    const userDocRef: DocumentReference<UserDoc> = doc(
-      db,
-      "users",
-      id
-    ).withConverter(converter());
-    const userDocSnap: DocumentSnapshot<UserDoc> = await getDoc(userDocRef);
-
-    if (userDocSnap.exists()) {
-      const data: UserDoc = userDocSnap.data();
-      return data;
-      // eslint-disable-next-line no-else-return
-    } else {
-      return initialState;
-    }
-  };
-
-  const userProps: UserDoc = await fetchUserDocs();
-
-  return {
-    props: userProps,
-  };
-};
+import { RootState } from "../../redux/store";
+import { useSelector } from "react-redux";
 
 const UserPage: React.VFC<UserDoc> = (userProps) => {
-  const [user, setUser] = useState<UserDoc>(userProps);
-
   const returnPhotoUrl = (arg: UserDoc): string | undefined => {
     if (arg.photoUrl === null) {
       return undefined;
@@ -94,6 +35,8 @@ const UserPage: React.VFC<UserDoc> = (userProps) => {
     }
     return arg.name;
   };
+  const user = useSelector((state: RootState) => state.user);
+  console.log(user);
 
   return (
     <>
@@ -113,11 +56,11 @@ const UserPage: React.VFC<UserDoc> = (userProps) => {
               <Image
                 borderRadius="full"
                 boxSize="100px"
-                src={returnPhotoUrl(user)}
+                src={returnPhotoUrl(userProps)}
                 alt="user"
               />
               <Text fontSize="lg" fontWeight="bold" p={3}>
-                {returnUserName(user)}
+                {returnUserName(userProps)}
               </Text>
               <Divider mb={5} />
               <Box pl={10} pr={10} w="100%">
@@ -186,3 +129,62 @@ const UserPage: React.VFC<UserDoc> = (userProps) => {
 };
 
 export default UserPage;
+
+export const getServerSideProps: GetServerSideProps = async (
+  context: GetServerSidePropsContext<ParsedUrlQuery, PreviewData>
+) => {
+  if (context.params === undefined) {
+    return {
+      props: {},
+    };
+  }
+
+  const params = context.params;
+  const id = params.id;
+  const fetchUserDocs = async () => {
+    const initialState: UserDoc = {
+      name: "",
+      photoUrl: "",
+      id: "",
+      radios: [],
+    };
+    if (id === undefined || Array.isArray(id)) {
+      return initialState;
+    }
+    const converter = () => ({
+      toFirestore: (data: UserDoc) => data,
+      fromFirestore: (
+        snapshot: QueryDocumentSnapshot<DocumentData>
+      ): UserDoc => {
+        const data = snapshot.data();
+        return {
+          id: data.id,
+          name: data.name,
+          photoUrl: data.photoUrl,
+          radios: data.radios,
+        };
+      },
+    });
+
+    const userDocRef: DocumentReference<UserDoc> = doc(
+      db,
+      "users",
+      id
+    ).withConverter(converter());
+    const userDocSnap: DocumentSnapshot<UserDoc> = await getDoc(userDocRef);
+
+    if (userDocSnap.exists()) {
+      const data: UserDoc = userDocSnap.data();
+      return data;
+      // eslint-disable-next-line no-else-return
+    } else {
+      return initialState;
+    }
+  };
+
+  const userProps: UserDoc = await fetchUserDocs();
+
+  return {
+    props: userProps,
+  };
+};
