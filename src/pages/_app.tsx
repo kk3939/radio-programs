@@ -5,6 +5,10 @@ import { onAuthStateChanged, User } from "firebase/auth";
 import { auth } from "../../firebase";
 import { createContext, useState } from "react";
 import "../styles/global.css";
+import { Provider } from "react-redux";
+import { PersistGate } from "redux-persist/integration/react";
+import { useStore } from "../redux/store";
+import { persistStore } from "redux-persist";
 
 const theme = extendTheme({
   styles: {
@@ -19,20 +23,15 @@ const theme = extendTheme({
 export const UserContext = createContext<User | null>(null);
 
 function MyApp({ Component, pageProps }: AppProps) {
-  const [user, setUser] = useState<User | null>(null);
-  onAuthStateChanged(auth, (callbackUser) => {
-    if (callbackUser) {
-      setUser(callbackUser);
-    } else {
-      setUser(null);
-    }
-  });
-
+  const store = useStore();
+  const persistor = persistStore(store);
   return (
     <ChakraProvider theme={theme}>
-      <UserContext.Provider value={user}>
-        <Component {...pageProps} />
-      </UserContext.Provider>
+      <Provider store={store}>
+        <PersistGate persistor={persistor}>
+          <Component {...pageProps} />
+        </PersistGate>
+      </Provider>
     </ChakraProvider>
   );
 }
