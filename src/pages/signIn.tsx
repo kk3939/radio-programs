@@ -1,13 +1,5 @@
 import React from "react";
-import {
-  Box,
-  Center,
-  Flex,
-  Button,
-  Text,
-  Icon,
-  SimpleGrid,
-} from "@chakra-ui/react";
+import { Box, Center, Button, Text, Icon, SimpleGrid } from "@chakra-ui/react";
 import { FcGoogle } from "react-icons/fc";
 import { GoogleAuthProvider, signInWithPopup, User } from "firebase/auth";
 import { auth, db } from "../../firebase";

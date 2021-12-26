@@ -5,17 +5,24 @@ import { auth } from "../../firebase";
 import { signOut } from "firebase/auth";
 import Footer from "../components/Footer";
 import Layout from "../components/Layout";
+import { useDispatch, useSelector } from "react-redux";
+import { userSlice } from "../redux/slice";
+import { RootState } from "../redux/store";
 
 const Index: React.VFC = () => {
+  const dispatch = useDispatch();
   const signOutAction = () => {
     signOut(auth)
       .then(() => {
+        dispatch(userSlice.actions.resetUser());
         location.reload();
       })
       .catch((error) => {
         console.log(error);
       });
   };
+  const user = useSelector((state: RootState) => state.user);
+  console.log(user);
   return (
     <>
       <Layout>
