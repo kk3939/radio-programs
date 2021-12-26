@@ -7,10 +7,13 @@ import { useRouter } from "next/router";
 import { doc, setDoc } from "firebase/firestore";
 import { UserDoc } from "../types/global";
 import Layout from "../components/Layout";
+import { useDispatch } from "react-redux";
+import { userSlice } from "../redux/slice";
 
 const SignIn: React.VFC = () => {
   const provider: GoogleAuthProvider = new GoogleAuthProvider();
   const router = useRouter();
+  const dispatch = useDispatch();
   const signInWithGoogle = (): void => {
     signInWithPopup(auth, provider)
       .then(async (result) => {
@@ -22,6 +25,12 @@ const SignIn: React.VFC = () => {
           radios: [],
         };
         await setDoc(doc(db, "users", user.uid), docData);
+        dispatch(
+          userSlice.actions.setUser({
+            ...docData,
+            isEdit: false,
+          })
+        );
         router.push(`/user/${user.uid}`);
       })
       .catch((error) => {

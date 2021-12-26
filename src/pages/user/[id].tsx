@@ -20,6 +20,8 @@ import { ParsedUrlQuery } from "querystring";
 import Layout from "../../components/Layout";
 import { RootState } from "../../redux/store";
 import { useSelector } from "react-redux";
+import { CloseIcon } from "@chakra-ui/icons";
+import EditIconComponent from "../../components/CloseIcon";
 
 const UserPage: React.VFC<UserDoc> = (userProps) => {
   const returnPhotoUrl = (arg: UserDoc): string | undefined => {
@@ -35,9 +37,9 @@ const UserPage: React.VFC<UserDoc> = (userProps) => {
     }
     return arg.name;
   };
-  const user = useSelector((state: RootState) => state.user);
+  const user: UserDoc = useSelector((state: RootState) => state.user);
   console.log(user);
-
+  const isEdit: boolean = useSelector((state: RootState) => state.user.isEdit);
   return (
     <>
       <Layout>
@@ -49,10 +51,23 @@ const UserPage: React.VFC<UserDoc> = (userProps) => {
             bg="white"
             w="70%"
             borderRadius="25px"
-            p={10}
+            p={5}
             boxShadow="lg"
           >
-            <Center flexDirection="column">
+            <Center flexDirection="column" pos="relative">
+              {isEdit && userProps.id === user.id ? (
+                <CloseIcon
+                  pos="absolute"
+                  w={6}
+                  h={6}
+                  top={2}
+                  right={2}
+                  color="blackAlpha.700"
+                />
+              ) : (
+                <EditIconComponent userProps={userProps} />
+              )}
+
               <Image
                 borderRadius="full"
                 boxSize="100px"
