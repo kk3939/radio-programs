@@ -13,55 +13,74 @@ import { UserContext } from "../_app";
 import { UserDoc } from "../../types/global";
 import { Flex, Box, Center, Divider, Image, Text } from "@chakra-ui/react";
 import Footer from "../../components/Footer";
+import {
+  GetServerSideProps,
+  GetServerSidePropsContext,
+  PreviewData,
+} from "next";
+import { ParsedUrlQuery } from "querystring";
 
-const UserPage = () => {
-  const router = useRouter();
-  const { id } = router.query;
-  const userFromContext = useContext(UserContext);
-  const initialState: UserDoc = {
-    name: "",
-    photoUrl: "",
-    id: "",
-    radios: [],
-  };
-  const [user, setUser] = useState<UserDoc>(initialState);
+export const getServerSideProps: GetServerSideProps = async (
+  context: GetServerSidePropsContext<ParsedUrlQuery, PreviewData>
+) => {
+  if (context.params === undefined) {
+    return {
+      props: {},
+    };
+  }
 
-  useEffect(() => {
-    if (userFromContext !== null) {
-      const fetchUserDocs = async () => {
-        const converter = () => ({
-          toFirestore: (data: UserDoc) => data,
-          fromFirestore: (
-            snapshot: QueryDocumentSnapshot<DocumentData>
-          ): UserDoc => {
-            const data = snapshot.data();
-            return {
-              id: data.id,
-              name: data.name,
-              photoUrl: data.photoUrl,
-              radios: data.radios,
-            };
-          },
-        });
-
-        const userDocRef: DocumentReference<UserDoc> = doc(
-          db,
-          "users",
-          userFromContext.uid
-        ).withConverter(converter());
-        const userDocSnap: DocumentSnapshot<UserDoc> = await getDoc(userDocRef);
-
-        if (userDocSnap.exists()) {
-          const data: UserDoc = userDocSnap.data();
-          setUser(data);
-          console.log(userDocSnap.data());
-        } else {
-          console.log("cannot fetch data!!!");
-        }
-      };
-      fetchUserDocs();
+  const params = context.params;
+  const id = params.id;
+  const fetchUserDocs = async () => {
+    const initialState: UserDoc = {
+      name: "",
+      photoUrl: "",
+      id: "",
+      radios: [],
+    };
+    if (id === undefined || Array.isArray(id)) {
+      return initialState;
     }
-  }, [userFromContext]);
+    const converter = () => ({
+      toFirestore: (data: UserDoc) => data,
+      fromFirestore: (
+        snapshot: QueryDocumentSnapshot<DocumentData>
+      ): UserDoc => {
+        const data = snapshot.data();
+        return {
+          id: data.id,
+          name: data.name,
+          photoUrl: data.photoUrl,
+          radios: data.radios,
+        };
+      },
+    });
+
+    const userDocRef: DocumentReference<UserDoc> = doc(
+      db,
+      "users",
+      id
+    ).withConverter(converter());
+    const userDocSnap: DocumentSnapshot<UserDoc> = await getDoc(userDocRef);
+
+    if (userDocSnap.exists()) {
+      const data: UserDoc = userDocSnap.data();
+      return data;
+      // eslint-disable-next-line no-else-return
+    } else {
+      return initialState;
+    }
+  };
+
+  const userProps: UserDoc = await fetchUserDocs();
+
+  return {
+    props: userProps,
+  };
+};
+
+const UserPage: React.VFC<UserDoc> = (userProps) => {
+  const [user, setUser] = useState<UserDoc>(userProps);
 
   const returnPhotoUrl = (arg: UserDoc): string | undefined => {
     if (arg.photoUrl === null) {
@@ -79,7 +98,7 @@ const UserPage = () => {
 
   return (
     <>
-      <Box pos="relative">
+      <Box pos="relative" minHeight="100vh">
         <Box w="100%" pos="absolute" top="100px" left="0">
           <Center>
             <Box
