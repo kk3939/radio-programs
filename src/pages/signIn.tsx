@@ -6,11 +6,9 @@ import { auth, converter, db } from "../../firebase";
 import { useRouter } from "next/router";
 import {
   collection,
-  doc,
   getDocs,
   query,
   QueryDocumentSnapshot,
-  setDoc,
   where,
 } from "firebase/firestore";
 import { UserDoc } from "../types/global";

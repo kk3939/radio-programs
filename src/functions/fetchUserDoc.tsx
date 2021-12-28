@@ -1,10 +1,8 @@
 import {
   doc,
-  DocumentData,
   DocumentReference,
   DocumentSnapshot,
   getDoc,
-  QueryDocumentSnapshot,
 } from "firebase/firestore";
 import { converter, db } from "../../firebase";
 import { initialState } from "../redux/slice";
