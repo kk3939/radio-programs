@@ -2,11 +2,20 @@ import React from "react";
 import { Box, Center, Button, Text, Icon, SimpleGrid } from "@chakra-ui/react";
 import { FcGoogle } from "react-icons/fc";
 import { GoogleAuthProvider, signInWithPopup, User } from "firebase/auth";
-import { auth, db } from "../../firebase";
+import { auth, converter, db } from "../../firebase";
 import { useRouter } from "next/router";
-import { doc, setDoc } from "firebase/firestore";
+import {
+  collection,
+  doc,
+  getDocs,
+  query,
+  QueryDocumentSnapshot,
+  setDoc,
+  where,
+} from "firebase/firestore";
 import { UserDoc } from "../types/global";
 import Layout from "../components/Layout";
+import { createUserDoc } from "../functions/createUserDoc";
 
 const SignIn: React.VFC = () => {
   const provider = new GoogleAuthProvider();
@@ -15,19 +24,23 @@ const SignIn: React.VFC = () => {
     signInWithPopup(auth, provider)
       .then(async (result) => {
         const user: User = result.user;
-        const docData: UserDoc = {
-          id: user.uid,
-          photoUrl: user.photoURL,
-          name: user.displayName,
-          radios: [
-            {
-              index: 0,
-              name: "三四郎のオールナイトニッポン0",
-            },
-          ],
-        };
-        await setDoc(doc(db, "users", user.uid), docData);
-        router.push(`/user/${user.uid}`);
+        // users collectionの中でloginしたユーザーと同じドキュメントを抽出するクエリ
+        const q = query(
+          collection(db, "users"),
+          where("id", "==", user.uid)
+        ).withConverter(converter());
+        const userDocCorrespondingSignInUser = await getDocs(q);
+        const userDocArray: Array<QueryDocumentSnapshot<UserDoc>> =
+          userDocCorrespondingSignInUser.docs;
+
+        if (userDocArray.length === 0) {
+          // ユーザーが存在しないということなので、新規でユーザー作成
+          createUserDoc(user);
+          router.push(`/user/${user.uid}`);
+        } else {
+          // ユーザーが既に存在する。
+          router.push(`/user/${user.uid}`);
+        }
       })
       .catch((error) => {
         console.log(error);

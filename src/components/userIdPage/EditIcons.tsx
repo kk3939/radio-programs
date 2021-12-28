@@ -1,20 +1,20 @@
 import React from "react";
 import { CloseIcon, EditIcon } from "@chakra-ui/icons";
-import { RootState } from "../redux/store";
+import { RootState } from "../../redux/store";
 import { useSelector } from "react-redux";
-import { UserDoc } from "../types/global";
+import { UserProps } from "../../types/global";
 
 type Props = {
-  userProps: UserDoc;
+  userProps: UserProps;
 };
 
 // UrlのId部分から取得したfirestoreのユーザーのデータとAuthからstateにセットした現在のログインユーザーを比較して、コンポーネントの表示を切り替える。
 const EditIcons: React.VFC<Props> = ({ userProps }) => {
-  const userState: UserDoc = useSelector((state: RootState) => state.user);
+  const userId: string = useSelector((state: RootState) => state.user.id);
   const isEdit: boolean = useSelector((state: RootState) => state.user.isEdit);
   return (
     <>
-      {isEdit && userProps.id === userState.id ? (
+      {isEdit && userProps.id === userId ? (
         <CloseIcon
           pos="absolute"
           w={6}
@@ -31,10 +31,10 @@ const EditIcons: React.VFC<Props> = ({ userProps }) => {
 };
 
 const EditableIcon: React.VFC<Props> = ({ userProps }) => {
-  const userState: UserDoc = useSelector((state: RootState) => state.user);
+  const userId: string = useSelector((state: RootState) => state.user.id);
   return (
     <>
-      {userProps.id === userState.id ? (
+      {userProps.id === userId ? (
         <EditIcon
           pos="absolute"
           w={6}

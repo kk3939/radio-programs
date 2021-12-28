@@ -1,8 +1,12 @@
 import { Box } from "@chakra-ui/react";
 import React from "react";
 
-const HandmadeSpacer: React.VFC = () => {
-  return <Box h="250px" />;
+type Props = {
+  spacePixel: string;
+};
+
+const HandmadeSpacer: React.VFC<Props> = ({ spacePixel }) => {
+  return <Box h={spacePixel} />;
 };
 
 export default HandmadeSpacer;

@@ -1,6 +1,11 @@
 import { initializeApp } from "firebase/app";
-import { getFirestore } from "firebase/firestore";
+import {
+  DocumentData,
+  getFirestore,
+  QueryDocumentSnapshot,
+} from "firebase/firestore";
 import { getAuth } from "firebase/auth";
+import { UserDoc } from "./src/types/global";
 
 const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_APIKEY,
@@ -16,3 +21,17 @@ const firebaseConfig = {
 export const app = initializeApp(firebaseConfig);
 export const db = getFirestore(app);
 export const auth = getAuth(app);
+
+// fetchでデータを取ってくる際に、型を定義させてあげる。
+export const converter = () => ({
+  toFirestore: (data: UserDoc) => data,
+  fromFirestore: (snapshot: QueryDocumentSnapshot<DocumentData>): UserDoc => {
+    const data = snapshot.data();
+    return {
+      id: data.id,
+      name: data.name,
+      photoUrl: data.photoUrl,
+      radios: data.radios,
+    };
+  },
+});

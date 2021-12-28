@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction, Slice } from "@reduxjs/toolkit";
 import { UserState } from "../types/global";
 
-const initialState: UserState = {
+export const initialState: UserState = {
   isEdit: false,
   name: "",
   id: "",

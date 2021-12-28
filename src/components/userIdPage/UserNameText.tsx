@@ -1,13 +1,13 @@
 import React from "react";
 import { Text } from "@chakra-ui/react";
-import { UserDoc, UserProps } from "../types/global";
+import { UserDoc, UserProps } from "../../types/global";
 
 type Props = {
   userProps: UserProps;
 };
 
 const UserNameText: React.VFC<Props> = ({ userProps }) => {
-  const returnUserName = (arg: UserDoc): string => {
+  const returnUserName = (arg: UserProps): string => {
     if (arg.name === null) {
       return "This user's name isn't setup.";
     }
