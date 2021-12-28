@@ -1,13 +1,4 @@
-import React, { useEffect } from "react";
-import {
-  doc,
-  DocumentData,
-  DocumentReference,
-  DocumentSnapshot,
-  getDoc,
-  QueryDocumentSnapshot,
-} from "firebase/firestore";
-import { auth, db } from "../../../firebase";
+import React from "react";
 import { UserDoc, UserProps } from "../../types/global";
 import { Box, Center, Divider, Text } from "@chakra-ui/react";
 import Footer from "../../components/Footer";
@@ -18,37 +9,18 @@ import {
 } from "next";
 import { ParsedUrlQuery } from "querystring";
 import Layout from "../../components/Layout";
-import { useDispatch, useSelector } from "react-redux";
-import { onAuthStateChanged } from "firebase/auth";
-import { userSlice } from "../../redux/slice";
 import EditIcons from "../../components/userIdPage/EditIcons";
 import HandmadeSpacer from "../../components/Spacer";
 import ProfileImage from "../../components/userIdPage/ProfileImage";
 import UserNameText from "../../components/userIdPage/UserNameText";
 import Radios from "../../components/userIdPage/Radios";
+import { setLoginUserState } from "../../functions/setLoginUserState";
+import { initialState } from "../../redux/slice";
+import { fetchUserDocs } from "../../functions/fetchUserDoc";
 
 const UserPage: React.VFC<UserProps> = (userProps) => {
-  const dispatch = useDispatch();
-  useEffect(() => {
-    // オブザーバーで監視しているため、初期化状態→authセットアップ完了で2回dispatchされる場合がある。
-    onAuthStateChanged(auth, (user) => {
-      if (user) {
-        const docData: UserDoc = {
-          id: user.uid,
-          photoUrl: user.photoURL,
-          name: user.displayName,
-          radios: [],
-        };
-        dispatch(
-          userSlice.actions.setUser({
-            ...docData,
-            isEdit: false,
-          })
-        );
-      }
-    });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  // カスタムフックでAuthからstateをset
+  setLoginUserState();
 
   return (
     <>
@@ -106,48 +78,12 @@ export const getServerSideProps: GetServerSideProps = async (
 
   const params = context.params;
   const id = params.id;
-  const fetchUserDocs = async () => {
-    const initialState: UserDoc = {
-      name: "",
-      photoUrl: "",
-      id: "",
-      radios: [],
+  if (id === undefined || Array.isArray(id)) {
+    return {
+      props: initialState,
     };
-    if (id === undefined || Array.isArray(id)) {
-      return initialState;
-    }
-    const converter = () => ({
-      toFirestore: (data: UserDoc) => data,
-      fromFirestore: (
-        snapshot: QueryDocumentSnapshot<DocumentData>
-      ): UserDoc => {
-        const data = snapshot.data();
-        return {
-          id: data.id,
-          name: data.name,
-          photoUrl: data.photoUrl,
-          radios: data.radios,
-        };
-      },
-    });
-
-    const userDocRef: DocumentReference<UserDoc> = doc(
-      db,
-      "users",
-      id
-    ).withConverter(converter());
-    const userDocSnap: DocumentSnapshot<UserDoc> = await getDoc(userDocRef);
-
-    if (userDocSnap.exists()) {
-      const data: UserDoc = userDocSnap.data();
-      return data;
-      // eslint-disable-next-line no-else-return
-    } else {
-      return initialState;
-    }
-  };
-
-  const userProps: UserDoc = await fetchUserDocs();
+  }
+  const userProps: UserDoc = await fetchUserDocs(id);
 
   return {
     props: userProps,
