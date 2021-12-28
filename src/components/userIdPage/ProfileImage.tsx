@@ -1,13 +1,13 @@
 import React from "react";
 import { Image } from "@chakra-ui/react";
-import { UserDoc } from "../../types/global";
+import { UserProps } from "../../types/global";
 
 type Props = {
-  userProps: UserDoc;
+  userProps: UserProps;
 };
 
 const ProfileImage: React.VFC<Props> = ({ userProps }) => {
-  const returnPhotoUrl = (arg: UserDoc): string | undefined => {
+  const returnPhotoUrl = (arg: UserProps): string | undefined => {
     if (arg.photoUrl === null) {
       return undefined;
     }

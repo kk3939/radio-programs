@@ -8,8 +8,8 @@ import {
   QueryDocumentSnapshot,
 } from "firebase/firestore";
 import { auth, db } from "../../../firebase";
-import { UserDoc, UserState } from "../../types/global";
-import { Flex, Box, Center, Divider, Text } from "@chakra-ui/react";
+import { UserDoc, UserProps } from "../../types/global";
+import { Box, Center, Divider, Text } from "@chakra-ui/react";
 import Footer from "../../components/Footer";
 import {
   GetServerSideProps,
@@ -18,7 +18,6 @@ import {
 } from "next";
 import { ParsedUrlQuery } from "querystring";
 import Layout from "../../components/Layout";
-import { RootState } from "../../redux/store";
 import { useDispatch, useSelector } from "react-redux";
 import { onAuthStateChanged } from "firebase/auth";
 import { userSlice } from "../../redux/slice";
@@ -28,11 +27,8 @@ import ProfileImage from "../../components/userIdPage/ProfileImage";
 import UserNameText from "../../components/userIdPage/UserNameText";
 import Radios from "../../components/userIdPage/Radios";
 
-const UserPage: React.VFC<UserDoc> = (userProps) => {
+const UserPage: React.VFC<UserProps> = (userProps) => {
   const dispatch = useDispatch();
-  const userState: UserState = useSelector((state: RootState) => state.user);
-  const isEdit: boolean = useSelector((state: RootState) => state.user.isEdit);
-
   useEffect(() => {
     // オブザーバーで監視しているため、初期化状態→authセットアップ完了で2回dispatchされる場合がある。
     onAuthStateChanged(auth, (user) => {

@@ -7,7 +7,7 @@ type Props = {
 };
 
 const UserNameText: React.VFC<Props> = ({ userProps }) => {
-  const returnUserName = (arg: UserDoc): string => {
+  const returnUserName = (arg: UserProps): string => {
     if (arg.name === null) {
       return "This user's name isn't setup.";
     }
