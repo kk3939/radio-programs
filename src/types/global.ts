@@ -7,7 +7,7 @@ export type UserDoc = {
 
 export type Radios = {
   radios: Array<{
-    id: string;
+    index: number;
     name: string;
   }>;
 };
@@ -15,3 +15,5 @@ export type Radios = {
 export type UserState = UserDoc & {
   isEdit: boolean;
 };
+
+export type UserProps = UserDoc;

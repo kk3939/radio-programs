@@ -8,6 +8,7 @@ type Props = {
   userProps: UserDoc;
 };
 
+// UrlのId部分から取得したfirestoreのユーザーのデータとAuthからstateにセットした現在のログインユーザーを比較して、コンポーネントの表示を切り替える。
 const EditIcons: React.VFC<Props> = ({ userProps }) => {
   const userState: UserDoc = useSelector((state: RootState) => state.user);
   const isEdit: boolean = useSelector((state: RootState) => state.user.isEdit);

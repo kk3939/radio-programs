@@ -8,8 +8,8 @@ import {
   QueryDocumentSnapshot,
 } from "firebase/firestore";
 import { auth, db } from "../../../firebase";
-import { UserDoc } from "../../types/global";
-import { Flex, Box, Center, Divider, Image, Text } from "@chakra-ui/react";
+import { UserDoc, UserState } from "../../types/global";
+import { Flex, Box, Center, Divider, Text } from "@chakra-ui/react";
 import Footer from "../../components/Footer";
 import {
   GetServerSideProps,
@@ -24,25 +24,14 @@ import { onAuthStateChanged } from "firebase/auth";
 import { userSlice } from "../../redux/slice";
 import EditIcons from "../../components/EditIcons";
 import HandmadeSpacer from "../../components/Spacer";
+import ProfileImage from "../../components/ProfileImage";
+import UserNameText from "../../components/UserNameText";
+import Radios from "../../components/Radios";
 
 const UserPage: React.VFC<UserDoc> = (userProps) => {
   const dispatch = useDispatch();
-  const userState: UserDoc = useSelector((state: RootState) => state.user);
+  const userState: UserState = useSelector((state: RootState) => state.user);
   const isEdit: boolean = useSelector((state: RootState) => state.user.isEdit);
-
-  const returnPhotoUrl = (arg: UserDoc): string | undefined => {
-    if (arg.photoUrl === null) {
-      return undefined;
-    }
-    return arg.photoUrl;
-  };
-
-  const returnUserName = (arg: UserDoc): string => {
-    if (arg.name === null) {
-      return "This user's name isn't setup.";
-    }
-    return arg.name;
-  };
 
   useEffect(() => {
     // オブザーバーで監視しているため、初期化状態→authセットアップ完了で2回dispatchされる場合がある。
@@ -81,16 +70,8 @@ const UserPage: React.VFC<UserDoc> = (userProps) => {
           >
             <Center flexDirection="column" pos="relative">
               <EditIcons userProps={userProps} />
-              <Image
-                borderRadius="full"
-                boxSize="100px"
-                src={returnPhotoUrl(userProps)}
-                alt="user"
-                mt={5}
-              />
-              <Text fontSize="lg" fontWeight="bold" p={3}>
-                {returnUserName(userProps)}
-              </Text>
+              <ProfileImage userProps={userProps} />
+              <UserNameText userProps={userProps} />
               <Divider mb={5} />
               <Box pl={10} pr={10} w="100%">
                 <Center flexDirection="column" w="100%">
@@ -103,20 +84,7 @@ const UserPage: React.VFC<UserDoc> = (userProps) => {
                   >
                     your listening radio programs are following....
                   </Text>
-                  <Box w="100%" p={4}>
-                    <Center>
-                      <Box pl={10} pr={10}>
-                        <Box boxSize="80px" borderRadius="25px" bg="cyan.200">
-                          <Flex justifyContent="center" h="100%" align="center">
-                            <Text>emoji</Text>
-                          </Flex>
-                        </Box>
-                      </Box>
-                      <Text fontSize="2xl" fontWeight="bold">
-                        三四郎のオールナイトニッポン0
-                      </Text>
-                    </Center>
-                  </Box>
+                  <Radios userProps={userProps} />
                 </Center>
               </Box>
             </Center>
