@@ -25,12 +25,6 @@ const SignIn: React.VFC = () => {
           radios: [],
         };
         await setDoc(doc(db, "users", user.uid), docData);
-        dispatch(
-          userSlice.actions.setUser({
-            ...docData,
-            isEdit: false,
-          })
-        );
         router.push(`/user/${user.uid}`);
       })
       .catch((error) => {
