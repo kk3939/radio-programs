@@ -9,7 +9,7 @@ import { UserDoc } from "../types/global";
 import Layout from "../components/Layout";
 
 const SignIn: React.VFC = () => {
-  const provider: GoogleAuthProvider = new GoogleAuthProvider();
+  const provider = new GoogleAuthProvider();
   const router = useRouter();
   const signInWithGoogle = (): void => {
     signInWithPopup(auth, provider)
@@ -19,7 +19,12 @@ const SignIn: React.VFC = () => {
           id: user.uid,
           photoUrl: user.photoURL,
           name: user.displayName,
-          radios: [],
+          radios: [
+            {
+              index: 0,
+              name: "三四郎のオールナイトニッポン0",
+            },
+          ],
         };
         await setDoc(doc(db, "users", user.uid), docData);
         router.push(`/user/${user.uid}`);

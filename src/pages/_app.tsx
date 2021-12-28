@@ -1,13 +1,14 @@
 /* eslint-disable react/react-in-jsx-scope */
 import type { AppProps } from "next/app";
 import { ChakraProvider, extendTheme } from "@chakra-ui/react";
-import { User } from "firebase/auth";
-import { createContext, useState } from "react";
 import "../styles/global.css";
-import { Provider } from "react-redux";
-import { PersistGate } from "redux-persist/integration/react";
-import { useStore } from "../redux/store";
-import { persistStore } from "redux-persist";
+import { Provider, useDispatch } from "react-redux";
+import { store } from "../redux/store";
+import { useEffect } from "react";
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "../../firebase";
+import { UserDoc } from "../types/global";
+import { userSlice } from "../redux/slice";
 
 const theme = extendTheme({
   styles: {
@@ -19,17 +20,11 @@ const theme = extendTheme({
   },
 });
 
-export const UserContext = createContext<User | null>(null);
-
-function MyApp({ Component, pageProps }: AppProps) {
-  const store = useStore();
-  const persistor = persistStore(store);
+function MyApp({ Component, pageProps, router }: AppProps) {
   return (
     <ChakraProvider theme={theme}>
       <Provider store={store}>
-        <PersistGate persistor={persistor}>
-          <Component {...pageProps} />
-        </PersistGate>
+        <Component {...pageProps} />
       </Provider>
     </ChakraProvider>
   );
