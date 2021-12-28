@@ -1,8 +1,8 @@
 import React from "react";
 import { CloseIcon, EditIcon } from "@chakra-ui/icons";
-import { RootState } from "../redux/store";
+import { RootState } from "../../redux/store";
 import { useSelector } from "react-redux";
-import { UserDoc } from "../types/global";
+import { UserDoc } from "../../types/global";
 
 type Props = {
   userProps: UserDoc;

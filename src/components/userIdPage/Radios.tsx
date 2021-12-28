@@ -1,6 +1,6 @@
 import React from "react";
 import { Box, Center, Flex, Text } from "@chakra-ui/react";
-import { UserProps } from "../types/global";
+import { UserProps } from "../../types/global";
 
 type Props = {
   userProps: UserProps;

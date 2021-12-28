@@ -1,6 +1,6 @@
 import React from "react";
 import { Image } from "@chakra-ui/react";
-import { UserDoc } from "../types/global";
+import { UserDoc } from "../../types/global";
 
 type Props = {
   userProps: UserDoc;

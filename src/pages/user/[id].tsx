@@ -22,11 +22,11 @@ import { RootState } from "../../redux/store";
 import { useDispatch, useSelector } from "react-redux";
 import { onAuthStateChanged } from "firebase/auth";
 import { userSlice } from "../../redux/slice";
-import EditIcons from "../../components/EditIcons";
+import EditIcons from "../../components/userIdPage/EditIcons";
 import HandmadeSpacer from "../../components/Spacer";
-import ProfileImage from "../../components/ProfileImage";
-import UserNameText from "../../components/UserNameText";
-import Radios from "../../components/Radios";
+import ProfileImage from "../../components/userIdPage/ProfileImage";
+import UserNameText from "../../components/userIdPage/UserNameText";
+import Radios from "../../components/userIdPage/Radios";
 
 const UserPage: React.VFC<UserDoc> = (userProps) => {
   const dispatch = useDispatch();
@@ -57,7 +57,7 @@ const UserPage: React.VFC<UserDoc> = (userProps) => {
   return (
     <>
       <Layout>
-        <Box h="100px" />
+        <HandmadeSpacer spacePixel="100px" />
         <Center>
           <Box
             align="center"
@@ -82,7 +82,7 @@ const UserPage: React.VFC<UserDoc> = (userProps) => {
                     fontWeight="bold"
                     fontSize="sm"
                   >
-                    your listening radio programs are following....
+                    my listening radio programs are following....
                   </Text>
                   <Radios userProps={userProps} />
                 </Center>
@@ -90,7 +90,7 @@ const UserPage: React.VFC<UserDoc> = (userProps) => {
             </Center>
           </Box>
         </Center>
-        <HandmadeSpacer />
+        <HandmadeSpacer spacePixel="250px" />
         <Footer />
       </Layout>
     </>
