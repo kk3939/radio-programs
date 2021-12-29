@@ -20,11 +20,14 @@ import { createUserDoc } from "./createUserDoc";
 import { useToast } from "@chakra-ui/react";
 
 // hooks APIはfunctional component内でcallする必要があるため、引数で受け渡す
-export const signOutFromApp = (dispatch: Dispatch<any>): void => {
+export const signOutFromApp = (
+  dispatch: Dispatch<any>,
+  router: NextRouter
+): void => {
   signOut(auth)
     .then(() => {
       dispatch(userSlice.actions.resetUser());
-      location.reload();
+      router.reload();
     })
     .catch((error) => {
       console.log(error);
