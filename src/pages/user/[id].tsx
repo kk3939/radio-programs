@@ -13,14 +13,14 @@ import EditIcons from "../../components/userIdPage/EditIcons";
 import HandmadeSpacer from "../../components/Spacer";
 import ProfileImage from "../../components/userIdPage/ProfileImage";
 import UserNameText from "../../components/userIdPage/UserNameText";
-import Radios from "../../components/userIdPage/Radios";
+import Radios from "../../components/userIdPage/radios/Radios";
 import { setLoginUserState } from "../../functions/setLoginUserState";
 import { initialState } from "../../redux/slice";
 import { fetchUserDocs } from "../../functions/fetchUserDoc";
 
 const UserPage: React.VFC<UserProps> = (userProps) => {
   // カスタムフックでAuthからstateをset
-  setLoginUserState();
+  setLoginUserState(userProps);
 
   return (
     <>
