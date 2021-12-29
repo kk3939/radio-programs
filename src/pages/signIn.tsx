@@ -1,50 +1,12 @@
 import React from "react";
 import { Box, Center, Button, Text, Icon, SimpleGrid } from "@chakra-ui/react";
 import { FcGoogle } from "react-icons/fc";
-import { GoogleAuthProvider, signInWithPopup, User } from "firebase/auth";
-import { auth, converter, db } from "../../firebase";
-import { useRouter } from "next/router";
-import {
-  collection,
-  getDocs,
-  query,
-  QueryDocumentSnapshot,
-  where,
-} from "firebase/firestore";
-import { UserDoc } from "../types/global";
 import Layout from "../components/Layout";
-import { createUserDoc } from "../functions/createUserDoc";
+import { signInWithGoogle } from "../functions/authentication";
+import { useRouter } from "next/router";
 
 const SignIn: React.VFC = () => {
-  const provider = new GoogleAuthProvider();
   const router = useRouter();
-  const signInWithGoogle = (): void => {
-    signInWithPopup(auth, provider)
-      .then(async (result) => {
-        const user: User = result.user;
-        // users collectionの中でloginしたユーザーと同じドキュメントを抽出するクエリ
-        const q = query(
-          collection(db, "users"),
-          where("id", "==", user.uid)
-        ).withConverter(converter());
-        const userDocCorrespondingSignInUser = await getDocs(q);
-        const userDocArray: Array<QueryDocumentSnapshot<UserDoc>> =
-          userDocCorrespondingSignInUser.docs;
-
-        if (userDocArray.length === 0) {
-          // ユーザーが存在しないということなので、新規でユーザー作成
-          createUserDoc(user);
-          router.push(`/user/${user.uid}`);
-        } else {
-          // ユーザーが既に存在する。
-          router.push(`/user/${user.uid}`);
-        }
-      })
-      .catch((error) => {
-        console.log(error);
-        router.push("/");
-      });
-  };
   return (
     <>
       <Layout>
@@ -78,7 +40,7 @@ const SignIn: React.VFC = () => {
                     w={16}
                     h={16}
                     onClick={() => {
-                      signInWithGoogle();
+                      signInWithGoogle(router);
                     }}
                   />
                 </Center>
@@ -87,7 +49,7 @@ const SignIn: React.VFC = () => {
                     color="gray.400"
                     role="button"
                     onClick={() => {
-                      signInWithGoogle();
+                      signInWithGoogle(router);
                     }}
                   >
                     Sign in with Google

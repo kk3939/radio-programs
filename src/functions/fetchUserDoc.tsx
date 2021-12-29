@@ -19,8 +19,6 @@ export async function fetchUserDocs(id: string): Promise<UserProps> {
   if (userDocSnap.exists()) {
     const data: UserDoc = userDocSnap.data();
     return data;
-    // eslint-disable-next-line no-else-return
-  } else {
-    return initialState;
   }
+  return initialState;
 }

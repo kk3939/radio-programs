@@ -1,0 +1,61 @@
+import {
+  GoogleAuthProvider,
+  signInWithPopup,
+  signOut,
+  User,
+} from "firebase/auth";
+import {
+  collection,
+  getDocs,
+  query,
+  QueryDocumentSnapshot,
+  where,
+} from "firebase/firestore";
+import { NextRouter } from "next/router";
+import { Dispatch } from "react";
+import { auth, converter, db } from "../../firebase";
+import { userSlice } from "../redux/slice";
+import { UserDoc } from "../types/global";
+import { createUserDoc } from "./createUserDoc";
+
+// hooks APIはfunctional component内でcallする必要があるため、引数で受け渡す
+export const signOutFromApp = (dispatch: Dispatch<any>): void => {
+  signOut(auth)
+    .then(() => {
+      dispatch(userSlice.actions.resetUser());
+      location.reload();
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+};
+
+// hooks APIはfunctional component内でcallする必要があるため、引数で受け渡す
+export const signInWithGoogle = (router: NextRouter): void => {
+  const provider = new GoogleAuthProvider();
+  signInWithPopup(auth, provider)
+    .then(async (result) => {
+      const user: User = result.user;
+      // users collectionの中でloginしたユーザーと同じドキュメントを抽出するクエリ
+      const q = query(
+        collection(db, "users"),
+        where("id", "==", user.uid)
+      ).withConverter(converter());
+      const userDocCorrespondingSignInUser = await getDocs(q);
+      const userDocArray: Array<QueryDocumentSnapshot<UserDoc>> =
+        userDocCorrespondingSignInUser.docs;
+
+      if (userDocArray.length === 0) {
+        // ユーザーが存在しないということなので、新規でユーザー作成
+        createUserDoc(user);
+        router.push(`/user/${user.uid}`);
+      } else {
+        // ユーザーが既に存在する。
+        router.push(`/user/${user.uid}`);
+      }
+    })
+    .catch((error) => {
+      console.log(error);
+      router.push("/");
+    });
+};
