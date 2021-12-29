@@ -20,7 +20,7 @@ import { fetchUserDocs } from "../../functions/fetchUserDoc";
 
 const UserPage: React.VFC<UserProps> = (userProps) => {
   // カスタムフックでAuthからstateをset
-  setLoginUserState();
+  setLoginUserState(userProps);
 
   return (
     <>
