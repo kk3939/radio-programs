@@ -1,7 +1,5 @@
 import React from "react";
-import { Box, Center, Flex, Text } from "@chakra-ui/react";
 import { UserProps } from "../../../types/global";
-import ButtonsInRadio from "./Buttons";
 import { RootState } from "../../../redux/store";
 import { useSelector } from "react-redux";
 import Radio from "./Radio";

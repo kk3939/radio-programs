@@ -1,5 +1,5 @@
 import React from "react";
-import { CloseIcon, EditIcon, CheckIcon } from "@chakra-ui/icons";
+import { CloseIcon, EditIcon } from "@chakra-ui/icons";
 import { RootState } from "../../redux/store";
 import { useDispatch, useSelector } from "react-redux";
 import { UserProps, UserState } from "../../types/global";
