@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction, Slice } from "@reduxjs/toolkit";
-import { UserState } from "../types/global";
+import { Radios, UserState } from "../types/global";
 import { RootState } from "./store";
 
 export const initialState: UserState = {
@@ -31,6 +31,46 @@ export const userSlice = createSlice({
       return {
         ...state,
         isEdit: !currentIsEdit,
+      };
+    },
+    addRadio(state: UserState, actions: PayloadAction<{ index: number }>) {
+      const radios: Array<{
+        index: number;
+        name: string;
+      }> = [...state.radios];
+      const nextIndex: number = actions.payload.index + 1;
+      const addData: {
+        index: number;
+        name: string;
+      } = {
+        index: nextIndex,
+        name: "三四郎のオールナイトニッポン0",
+      };
+      radios.splice(nextIndex, 0, addData);
+      const returnRadios = [...radios].map((radio, i) => {
+        radio.index = i;
+        return radio;
+      });
+      return {
+        ...state,
+        radios: returnRadios,
+      };
+    },
+    deleteRadio(state: UserState, action: PayloadAction<{ index: number }>) {
+      const radios: Array<{
+        index: number;
+        name: string;
+      }> = [...state.radios];
+      const deletedRadios = [...radios].filter(
+        (radio) => radio.index !== action.payload.index
+      );
+      const returnRadios = [...deletedRadios].map((radio, i) => {
+        radio.index = i;
+        return radio;
+      });
+      return {
+        ...state,
+        radios: returnRadios,
       };
     },
   },
