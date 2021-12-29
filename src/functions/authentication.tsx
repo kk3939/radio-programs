@@ -17,7 +17,7 @@ import { auth, converter, db } from "../../firebase";
 import { userSlice } from "../redux/slice";
 import { UserDoc } from "../types/global";
 import { createUserDoc } from "./createUserDoc";
-import { useToast, UseToastOptions } from "@chakra-ui/react";
+import { useToast } from "@chakra-ui/react";
 
 // hooks APIはfunctional component内でcallする必要があるため、引数で受け渡す
 export const signOutFromApp = (dispatch: Dispatch<any>): void => {

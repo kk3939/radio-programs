@@ -1,9 +1,10 @@
 import React from "react";
-import { CloseIcon, EditIcon } from "@chakra-ui/icons";
+import { CloseIcon, EditIcon, CheckIcon } from "@chakra-ui/icons";
 import { RootState } from "../../redux/store";
 import { useDispatch, useSelector } from "react-redux";
 import { UserProps } from "../../types/global";
 import { userSlice } from "../../redux/slice";
+import { Box, Flex, Tooltip } from "@chakra-ui/react";
 
 type Props = {
   userProps: UserProps;
@@ -17,17 +18,40 @@ const EditIcons: React.VFC<Props> = ({ userProps }) => {
   return (
     <>
       {isEdit && userProps.id === userId ? (
-        <CloseIcon
+        <Flex
           pos="absolute"
-          w={6}
-          h={6}
           top={2}
           right={2}
-          color="blackAlpha.700"
-          onClick={() => {
-            dispatch(userSlice.actions.changeIsEdit());
-          }}
-        />
+          align="center"
+          justifyContent="right"
+          w="30%"
+        >
+          <Tooltip label="save your input" aria-label="save button description">
+            <CheckIcon
+              role="button"
+              aria-label="save"
+              w={7}
+              h={7}
+              color="green.400"
+            />
+          </Tooltip>
+          <Box w="15%" />
+          <Tooltip
+            label="close this edit page"
+            aria-label="close button description"
+          >
+            <CloseIcon
+              role="button"
+              aria-label="close"
+              w={5}
+              h={5}
+              color="blackAlpha.700"
+              onClick={() => {
+                dispatch(userSlice.actions.changeIsEdit());
+              }}
+            />
+          </Tooltip>
+        </Flex>
       ) : (
         <EditableIcon userProps={userProps} />
       )}
@@ -41,17 +65,21 @@ const EditableIcon: React.VFC<Props> = ({ userProps }) => {
   return (
     <>
       {userProps.id === userId ? (
-        <EditIcon
-          pos="absolute"
-          w={6}
-          h={6}
-          top={2}
-          right={2}
-          color="blackAlpha.700"
-          onClick={() => {
-            dispatch(userSlice.actions.changeIsEdit());
-          }}
-        />
+        <Tooltip label="edit your page" aria-label="edit Button description">
+          <EditIcon
+            role="button"
+            aria-label="edit"
+            pos="absolute"
+            w={6}
+            h={6}
+            top={2}
+            right={2}
+            color="blackAlpha.700"
+            onClick={() => {
+              dispatch(userSlice.actions.changeIsEdit());
+            }}
+          />
+        </Tooltip>
       ) : (
         ""
       )}
