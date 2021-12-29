@@ -1,8 +1,9 @@
 import React from "react";
 import { CloseIcon, EditIcon } from "@chakra-ui/icons";
 import { RootState } from "../../redux/store";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { UserProps } from "../../types/global";
+import { userSlice } from "../../redux/slice";
 
 type Props = {
   userProps: UserProps;
@@ -10,6 +11,7 @@ type Props = {
 
 // UrlのId部分から取得したfirestoreのユーザーのデータとAuthからstateにセットした現在のログインユーザーを比較して、コンポーネントの表示を切り替える。
 const EditIcons: React.VFC<Props> = ({ userProps }) => {
+  const dispatch = useDispatch();
   const userId: string = useSelector((state: RootState) => state.user.id);
   const isEdit: boolean = useSelector((state: RootState) => state.user.isEdit);
   return (
@@ -22,6 +24,9 @@ const EditIcons: React.VFC<Props> = ({ userProps }) => {
           top={2}
           right={2}
           color="blackAlpha.700"
+          onClick={() => {
+            dispatch(userSlice.actions.changeIsEdit());
+          }}
         />
       ) : (
         <EditableIcon userProps={userProps} />
@@ -32,6 +37,7 @@ const EditIcons: React.VFC<Props> = ({ userProps }) => {
 
 const EditableIcon: React.VFC<Props> = ({ userProps }) => {
   const userId: string = useSelector((state: RootState) => state.user.id);
+  const dispatch = useDispatch();
   return (
     <>
       {userProps.id === userId ? (
@@ -42,6 +48,9 @@ const EditableIcon: React.VFC<Props> = ({ userProps }) => {
           top={2}
           right={2}
           color="blackAlpha.700"
+          onClick={() => {
+            dispatch(userSlice.actions.changeIsEdit());
+          }}
         />
       ) : (
         ""
