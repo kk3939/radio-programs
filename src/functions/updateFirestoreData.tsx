@@ -4,7 +4,7 @@ import { NextRouter } from "next/router";
 import { db } from "../../firebase";
 import { UserState } from "../types/global";
 
-export const updateFireStoreData = async (
+export const updateFirestoreData = async (
   userState: UserState,
   toast: ReturnType<typeof useToast>,
   router: NextRouter
