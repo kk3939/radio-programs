@@ -6,7 +6,7 @@ import { auth } from "../../firebase";
 import { userSlice } from "../redux/slice";
 import { UserDoc } from "../types/global";
 
-export const setLoginUserState = () => {
+export const setLoginUserState = (): void => {
   const dispatch = useDispatch();
   useEffect(() => {
     // オブザーバーで監視しているため、初期化状態→authセットアップ完了で2回dispatchされる場合がある。

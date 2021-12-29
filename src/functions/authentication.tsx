@@ -17,6 +17,7 @@ import { auth, converter, db } from "../../firebase";
 import { userSlice } from "../redux/slice";
 import { UserDoc } from "../types/global";
 import { createUserDoc } from "./createUserDoc";
+import { useToast, UseToastOptions } from "@chakra-ui/react";
 
 // hooks APIはfunctional component内でcallする必要があるため、引数で受け渡す
 export const signOutFromApp = (dispatch: Dispatch<any>): void => {
@@ -31,7 +32,10 @@ export const signOutFromApp = (dispatch: Dispatch<any>): void => {
 };
 
 // hooks APIはfunctional component内でcallする必要があるため、引数で受け渡す
-export const signInWithGoogle = (router: NextRouter): void => {
+export const signInWithGoogle = (
+  router: NextRouter,
+  toast: ReturnType<typeof useToast>
+): void => {
   const provider = new GoogleAuthProvider();
   signInWithPopup(auth, provider)
     .then(async (result) => {
@@ -54,8 +58,15 @@ export const signInWithGoogle = (router: NextRouter): void => {
         router.push(`/user/${user.uid}`);
       }
     })
-    .catch((error) => {
-      console.log(error);
-      router.push("/");
+    .catch(() => {
+      // ログイン失敗時のpopup
+      toast({
+        position: "top",
+        title: "Can't login with your Account.",
+        description: `It occurs some problems.`,
+        status: "error",
+        duration: 8000,
+        isClosable: true,
+      });
     });
 };

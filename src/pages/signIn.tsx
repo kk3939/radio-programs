@@ -1,5 +1,13 @@
 import React from "react";
-import { Box, Center, Button, Text, Icon, SimpleGrid } from "@chakra-ui/react";
+import {
+  Box,
+  Center,
+  Button,
+  Text,
+  Icon,
+  SimpleGrid,
+  useToast,
+} from "@chakra-ui/react";
 import { FcGoogle } from "react-icons/fc";
 import Layout from "../components/Layout";
 import { signInWithGoogle } from "../functions/authentication";
@@ -7,6 +15,7 @@ import { useRouter } from "next/router";
 
 const SignIn: React.VFC = () => {
   const router = useRouter();
+  const toast = useToast();
   return (
     <>
       <Layout>
@@ -40,7 +49,7 @@ const SignIn: React.VFC = () => {
                     w={16}
                     h={16}
                     onClick={() => {
-                      signInWithGoogle(router);
+                      signInWithGoogle(router, toast);
                     }}
                   />
                 </Center>
@@ -49,7 +58,7 @@ const SignIn: React.VFC = () => {
                     color="gray.400"
                     role="button"
                     onClick={() => {
-                      signInWithGoogle(router);
+                      signInWithGoogle(router, toast);
                     }}
                   >
                     Sign in with Google
