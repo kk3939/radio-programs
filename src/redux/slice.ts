@@ -75,5 +75,23 @@ export const userSlice = createSlice({
         radios: returnRadios,
       };
     },
+    updateRadioName(
+      state: UserState,
+      actions: PayloadAction<{ index: number; radioName: string }>
+    ) {
+      const radios = [...state.radios];
+      const returnRadios = [...radios].map((radio) => {
+        const copyRadio = { ...radio };
+        if (copyRadio.index === actions.payload.index) {
+          copyRadio.name = actions.payload.radioName;
+          return copyRadio;
+        }
+        return copyRadio;
+      });
+      return {
+        ...state,
+        radios: returnRadios,
+      };
+    },
   },
 });

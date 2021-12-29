@@ -2,6 +2,7 @@ import { Text, Box, Center, Flex } from "@chakra-ui/react";
 import React from "react";
 import { UserProps } from "../../../types/global";
 import ButtonsInRadio from "./Buttons";
+import RadioText from "./RadioText";
 
 type Props = {
   userProps: UserProps;
@@ -15,18 +16,16 @@ type Props = {
 const Radio: React.VFC<Props> = ({ userProps, i, radio }) => {
   return (
     <>
-      <Box w="100%" p={4} boxShadow="sm" bg="gray.50" borderRadius="40px">
+      <Box w="100%" p={4} borderRadius="40px" m={4}>
         <Center align="center">
           <Box pl={10} pr={10}>
-            <Box boxSize="80px" borderRadius="25px" bg="cyan.200">
+            <Box boxSize="80px" borderRadius="30px" bg="blue.50">
               <Flex justifyContent="center" h="100%" align="center">
-                <Text>emoji</Text>
+                <Text fontSize="4xl">📻</Text>
               </Flex>
             </Box>
           </Box>
-          <Text fontSize="2xl" fontWeight="bold">
-            {radio.name}
-          </Text>
+          <RadioText radio={radio} i={i} userProps={userProps} />
           <ButtonsInRadio userProps={userProps} i={i} />
         </Center>
       </Box>
