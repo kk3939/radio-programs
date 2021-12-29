@@ -2,9 +2,10 @@ import React from "react";
 import { CloseIcon, EditIcon, CheckIcon } from "@chakra-ui/icons";
 import { RootState } from "../../redux/store";
 import { useDispatch, useSelector } from "react-redux";
-import { UserProps } from "../../types/global";
+import { UserProps, UserState } from "../../types/global";
 import { userSlice } from "../../redux/slice";
 import { Box, Flex, Tooltip } from "@chakra-ui/react";
+import SaveIconButton from "./SaveIconButton";
 
 type Props = {
   userProps: UserProps;
@@ -26,15 +27,7 @@ const EditIcons: React.VFC<Props> = ({ userProps }) => {
           justifyContent="right"
           w="30%"
         >
-          <Tooltip label="save your input" aria-label="save button description">
-            <CheckIcon
-              role="button"
-              aria-label="save"
-              w={7}
-              h={7}
-              color="green.400"
-            />
-          </Tooltip>
+          <SaveIconButton />
           <Box w="15%" />
           <Tooltip
             label="close this edit page"
