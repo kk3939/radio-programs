@@ -16,19 +16,12 @@ type Props = {
 const Radio: React.VFC<Props> = ({ userProps, i, radio }) => {
   return (
     <>
-      <Box
-        w="100%"
-        p={4}
-        boxShadow="sm"
-        bg="gray.100"
-        borderRadius="40px"
-        m={4}
-      >
+      <Box w="100%" p={4} borderRadius="40px" m={4}>
         <Center align="center">
           <Box pl={10} pr={10}>
-            <Box boxSize="80px" borderRadius="25px" bg="cyan.200">
+            <Box boxSize="80px" borderRadius="30px" bg="blue.50">
               <Flex justifyContent="center" h="100%" align="center">
-                <Text>emoji</Text>
+                <Text fontSize="4xl">📻</Text>
               </Flex>
             </Box>
           </Box>
