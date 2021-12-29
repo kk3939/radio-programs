@@ -9,7 +9,7 @@ import { Radios, UserDoc, UserProps } from "../types/global";
 export const setLoginUserState = (userProps: UserProps): void => {
   const dispatch = useDispatch();
   useEffect(() => {
-    // ログインしているユーザーと同じmy Page出ないとstateがセットされない。
+    // ログインしているユーザーと同じmyPageでないとstateがセットされない。
     onAuthStateChanged(auth, (user) => {
       if (user) {
         if (user.uid === userProps.id) {
