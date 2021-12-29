@@ -19,5 +19,11 @@ export const userSlice = createSlice({
     setUser(_, action: PayloadAction<UserState>) {
       return action.payload;
     },
+    updateUserName(state: UserState, action: PayloadAction<string>) {
+      return {
+        ...state,
+        name: action.payload,
+      };
+    },
   },
 });
