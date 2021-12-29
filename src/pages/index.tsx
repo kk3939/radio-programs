@@ -5,9 +5,11 @@ import Footer from "../components/Footer";
 import Layout from "../components/Layout";
 import { signOutFromApp } from "../functions/authentication";
 import { useDispatch } from "react-redux";
+import { useRouter } from "next/router";
 
 const Index: React.VFC = () => {
   const dispatch = useDispatch();
+  const router = useRouter();
   return (
     <>
       <Layout>
@@ -20,7 +22,7 @@ const Index: React.VFC = () => {
           <Text
             color="white"
             role="button"
-            onClick={() => signOutFromApp(dispatch)}
+            onClick={() => signOutFromApp(dispatch, router)}
           >
             logout
           </Text>

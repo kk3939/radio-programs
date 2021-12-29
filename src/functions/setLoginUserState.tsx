@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { auth } from "../../firebase";
 import { userSlice } from "../redux/slice";
-import { Radios, UserDoc, UserProps } from "../types/global";
+import { UserDoc, UserProps } from "../types/global";
 
 export const setLoginUserState = (userProps: UserProps): void => {
   const dispatch = useDispatch();
