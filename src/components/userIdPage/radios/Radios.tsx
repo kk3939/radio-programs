@@ -2,38 +2,27 @@ import React from "react";
 import { Box, Center, Flex, Text } from "@chakra-ui/react";
 import { UserProps } from "../../../types/global";
 import ButtonsInRadio from "./Buttons";
+import { RootState } from "../../../redux/store";
+import { useSelector } from "react-redux";
+import Radio from "./Radio";
 
 type Props = {
   userProps: UserProps;
 };
 
 const Radios: React.VFC<Props> = ({ userProps }) => {
+  const isEdit: boolean = useSelector((state: RootState) => state.user.isEdit);
+  const userId: string = useSelector((state: RootState) => state.user.id);
+  const radios = useSelector((state: RootState) => state.user.radios);
   return (
     <>
-      {userProps.radios.map((radio, i) => (
-        <Box
-          w="100%"
-          p={4}
-          key={i}
-          boxShadow="sm"
-          bg="gray.50"
-          borderRadius="40px"
-        >
-          <Center align="center">
-            <Box pl={10} pr={10}>
-              <Box boxSize="80px" borderRadius="25px" bg="cyan.200">
-                <Flex justifyContent="center" h="100%" align="center">
-                  <Text>emoji</Text>
-                </Flex>
-              </Box>
-            </Box>
-            <Text fontSize="2xl" fontWeight="bold">
-              {radio.name}
-            </Text>
-            <ButtonsInRadio userProps={userProps} />
-          </Center>
-        </Box>
-      ))}
+      {isEdit && userProps.id === userId
+        ? radios.map((radio, i) => (
+            <Radio userProps={userProps} i={i} radio={radio} key={i} />
+          ))
+        : userProps.radios.map((radio, i) => (
+            <Radio userProps={userProps} i={i} radio={radio} key={i} />
+          ))}
     </>
   );
 };

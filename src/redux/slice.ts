@@ -47,9 +47,10 @@ export const userSlice = createSlice({
         name: "三四郎のオールナイトニッポン0",
       };
       radios.splice(nextIndex, 0, addData);
-      const returnRadios = [...radios].map((radio, i) => {
-        radio.index = i;
-        return radio;
+      const returnRadios = radios.map((radio, i) => {
+        const copyRadio = { ...radio };
+        copyRadio.index = i;
+        return copyRadio;
       });
       return {
         ...state,
@@ -65,8 +66,9 @@ export const userSlice = createSlice({
         (radio) => radio.index !== action.payload.index
       );
       const returnRadios = [...deletedRadios].map((radio, i) => {
-        radio.index = i;
-        return radio;
+        const copyRadio = { ...radio };
+        copyRadio.index = i;
+        return copyRadio;
       });
       return {
         ...state,
