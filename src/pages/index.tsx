@@ -11,8 +11,16 @@ const Index: React.VFC = () => {
   return (
     <>
       <Layout>
-        <Center p={20} align="center" flexDirection="column">
-          <Text fontSize="9xl" color="white" fontWeight="bold">
+        <Center p={5} align="center" flexDirection="column" minH="100vh">
+          <Text
+            fontSize={{
+              base: "8xl",
+              md: "8xl",
+              lg: "9xl",
+            }}
+            color="white"
+            fontWeight="bold"
+          >
             Share your radios.
           </Text>
           <Center align="center" w="100%" h="200px">
@@ -33,10 +41,7 @@ const Index: React.VFC = () => {
         <Center
           align="center"
           bg="blackAlpha.50"
-          pr={20}
-          pl={20}
-          pt={20}
-          pb={20}
+          p={{ base: 10, sm: 20 }}
           flexWrap="wrap"
         >
           <Box p={10} bg="white" borderRadius="50px">
@@ -47,23 +52,51 @@ const Index: React.VFC = () => {
               height="363px"
             />
           </Box>
-          <Box p={20}>
-            <Text color="white" fontSize="3xl" fontWeight="bold" p={10}>
+          <Box
+            p={{
+              base: "5px",
+              sm: "5px",
+            }}
+          >
+            <Text
+              color="white"
+              fontSize={{ base: "2xl", sm: "4xl" }}
+              fontWeight="bold"
+              p={10}
+            >
               Your profile displays your radios.
             </Text>
-            <Text color="white" fontSize="lg" fontWeight="bold">
+            <Text
+              color="white"
+              fontSize={{ base: "md", sm: "lg" }}
+              fontWeight="bold"
+              pr={5}
+              pl={5}
+            >
               You can share what you like with URL.
             </Text>
-            <Text color="white" fontSize="lg" fontWeight="bold">
+            <Text
+              color="white"
+              fontSize={{ base: "md", sm: "lg" }}
+              fontWeight="bold"
+              pr={5}
+              pl={5}
+            >
               About login method, we prepare only with google.
             </Text>
-            <Text color="white" fontSize="lg" fontWeight="bold">
+            <Text
+              color="white"
+              fontSize={{ base: "md", sm: "lg" }}
+              fontWeight="bold"
+              pr={5}
+              pl={5}
+            >
               If you have any questions and requests, please mail this app
               mantainer(kyo51310@gmail.com).
             </Text>
           </Box>
         </Center>
-        <HandmadeSpacer spacePixel="300px" />
+        <HandmadeSpacer spacePixel={{ base: "150px" }} />
         <Footer />
       </Layout>
     </>
