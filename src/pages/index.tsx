@@ -1,11 +1,10 @@
 import React from "react";
-import { Box, Button, Center, Flex, Text } from "@chakra-ui/react";
+import { Box, Button, Center, Text } from "@chakra-ui/react";
 import Footer from "../components/Footer";
 import Layout from "../components/Layout";
 import { useRouter } from "next/router";
 import HandmadeSpacer from "../components/Spacer";
 import Image from "next/image";
-import profile from "../asset/profile.png";
 
 const Index: React.VFC = () => {
   const router = useRouter();
@@ -41,7 +40,12 @@ const Index: React.VFC = () => {
           flexWrap="wrap"
         >
           <Box p={10} bg="white" borderRadius="50px">
-            <Image src={profile} loading="lazy" />
+            <Image
+              src="/profile2.png"
+              loading="lazy"
+              width="353px"
+              height="363px"
+            />
           </Box>
           <Box p={20}>
             <Text color="white" fontSize="3xl" fontWeight="bold" p={10}>
