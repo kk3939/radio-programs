@@ -19,23 +19,22 @@ const SignIn: React.VFC = () => {
   return (
     <>
       <Layout>
-        <Box h="150px" />
-        <Center>
+        <Center align="center" flexDirection="column" minH="100vh">
           <Box
             bg="white"
-            h="400px"
-            w="30%"
+            w={{ base: "90%", sm: "70%", md: "50%", lg: "35%", xl: "30%" }}
             borderRadius="25px"
             pt={10}
-            pr={10}
             pl={10}
+            pr={10}
+            pb={20}
             boxShadow="lg"
           >
             <Center
               h="100px"
-              fontSize="3xl"
+              fontSize={{ base: "2xl" }}
               color="black"
-              p={5}
+              p={2}
               fontWeight="bold"
             >
               Log in to your account.
