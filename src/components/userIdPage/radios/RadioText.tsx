@@ -35,7 +35,7 @@ const RadioText: React.VFC<Props> = ({ radio, userProps, i }) => {
           }
         />
       ) : (
-        <Text fontSize="2xl" fontWeight="bold">
+        <Text fontSize={{ base: "md", md: "2xl" }} fontWeight="bold">
           {radio.name}
         </Text>
       )}
