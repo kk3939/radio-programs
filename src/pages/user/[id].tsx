@@ -17,6 +17,7 @@ import Radios from "../../components/userIdPage/radios/Radios";
 import { setLoginUserState } from "../../functions/setLoginUserState";
 import { initialState } from "../../redux/slice";
 import { fetchUserDocs } from "../../functions/fetchUserDoc";
+import TopRadioText from "../../components/userIdPage/TopRadioText";
 
 const UserPage: React.VFC<UserProps> = (userProps) => {
   // カスタムフックでAuthからstateをset
@@ -43,15 +44,7 @@ const UserPage: React.VFC<UserProps> = (userProps) => {
               <Divider mb={5} />
               <Box pl={{ base: 2, md: 10 }} pr={{ base: 2, md: 10 }} w="100%">
                 <Center flexDirection="column" w="100%">
-                  <Text
-                    pt={2}
-                    pb={2}
-                    color="blackAlpha.700"
-                    fontWeight="bold"
-                    fontSize={{ base: "xs", md: "sm" }}
-                  >
-                    my listening radio programs are following....
-                  </Text>
+                  <TopRadioText />
                   <Radios userProps={userProps} />
                 </Center>
               </Box>
