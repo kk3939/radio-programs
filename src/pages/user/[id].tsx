@@ -10,7 +10,7 @@ import {
 import { ParsedUrlQuery } from "querystring";
 import Layout from "../../components/Layout";
 import EditIcons from "../../components/userIdPage/EditIcons";
-import HandmadeSpacer from "../../components/Spacer";
+import HeightSpacer from "../../components/HeightSpacer";
 import ProfileImage from "../../components/userIdPage/ProfileImage";
 import UserNameText from "../../components/userIdPage/UserNameText";
 import Radios from "../../components/userIdPage/radios/Radios";
@@ -25,7 +25,7 @@ const UserPage: React.VFC<UserProps> = (userProps) => {
   return (
     <>
       <Layout>
-        <HandmadeSpacer spacePixel="100px" />
+        <HeightSpacer spacePixel="100px" />
         <Center>
           <Box
             align="center"
@@ -58,7 +58,7 @@ const UserPage: React.VFC<UserProps> = (userProps) => {
             </Center>
           </Box>
         </Center>
-        <HandmadeSpacer spacePixel="250px" />
+        <HeightSpacer spacePixel="250px" />
         <Footer />
       </Layout>
     </>

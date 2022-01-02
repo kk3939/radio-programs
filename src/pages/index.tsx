@@ -3,7 +3,7 @@ import { Box, Button, Center, Text } from "@chakra-ui/react";
 import Footer from "../components/Footer";
 import Layout from "../components/Layout";
 import { useRouter } from "next/router";
-import HandmadeSpacer from "../components/Spacer";
+import HeightSpacer from "../components/HeightSpacer";
 import Image from "next/image";
 
 const Index: React.VFC = () => {
@@ -96,7 +96,7 @@ const Index: React.VFC = () => {
             </Text>
           </Box>
         </Center>
-        <HandmadeSpacer spacePixel={{ base: "150px" }} />
+        <HeightSpacer spacePixel={{ base: "150px" }} />
         <Footer />
       </Layout>
     </>
