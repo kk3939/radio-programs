@@ -47,6 +47,9 @@ const SignIn: React.VFC = () => {
                     as={FcGoogle}
                     w={16}
                     h={16}
+                    aria-pressed="false"
+                    tabIndex={0}
+                    aria-label="signIn"
                     onClick={() => {
                       signInWithGoogle(router, toast);
                     }}
@@ -56,6 +59,9 @@ const SignIn: React.VFC = () => {
                   <Text
                     color="gray.400"
                     role="button"
+                    aria-pressed="false"
+                    tabIndex={0}
+                    aria-label="signIn"
                     onClick={() => {
                       signInWithGoogle(router, toast);
                     }}
