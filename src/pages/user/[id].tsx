@@ -31,9 +31,9 @@ const UserPage: React.VFC<UserProps> = (userProps) => {
             align="center"
             justifyContent="center"
             bg="white"
-            w="70%"
+            w={{ base: "90%", md: "70%" }}
             borderRadius="25px"
-            p={5}
+            p={{ base: 2, sm: 5 }}
             boxShadow="lg"
           >
             <Center flexDirection="column" pos="relative">
@@ -41,14 +41,14 @@ const UserPage: React.VFC<UserProps> = (userProps) => {
               <ProfileImage userProps={userProps} />
               <UserNameText userProps={userProps} />
               <Divider mb={5} />
-              <Box pl={10} pr={10} w="100%">
+              <Box pl={{ base: 2, md: 10 }} pr={{ base: 2, md: 10 }} w="100%">
                 <Center flexDirection="column" w="100%">
                   <Text
                     pt={2}
                     pb={2}
                     color="blackAlpha.700"
                     fontWeight="bold"
-                    fontSize="sm"
+                    fontSize={{ base: "xs", md: "sm" }}
                   >
                     my listening radio programs are following....
                   </Text>
