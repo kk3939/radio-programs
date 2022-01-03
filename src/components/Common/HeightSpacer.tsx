@@ -5,8 +5,8 @@ type Props = {
   spacePixel: string | object;
 };
 
-const HandmadeSpacer: React.VFC<Props> = ({ spacePixel }) => {
+const HeightSpacer: React.VFC<Props> = ({ spacePixel }) => {
   return <Box h={spacePixel} />;
 };
 
-export default HandmadeSpacer;
+export default HeightSpacer;

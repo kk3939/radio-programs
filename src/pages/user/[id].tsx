@@ -1,22 +1,23 @@
 import React from "react";
 import { UserDoc, UserProps } from "../../types/global";
-import { Box, Center, Divider, Text } from "@chakra-ui/react";
-import Footer from "../../components/Footer";
+import { Box, Center, Divider } from "@chakra-ui/react";
+import Footer from "../../components/Common/Footer";
 import {
   GetServerSideProps,
   GetServerSidePropsContext,
   PreviewData,
 } from "next";
 import { ParsedUrlQuery } from "querystring";
-import Layout from "../../components/Layout";
+import Layout from "../../components/Common/Layout";
 import EditIcons from "../../components/userIdPage/EditIcons";
-import HandmadeSpacer from "../../components/Spacer";
+import HeightSpacer from "../../components/Common/HeightSpacer";
 import ProfileImage from "../../components/userIdPage/ProfileImage";
 import UserNameText from "../../components/userIdPage/UserNameText";
 import Radios from "../../components/userIdPage/radios/Radios";
 import { setLoginUserState } from "../../functions/setLoginUserState";
 import { initialState } from "../../redux/slice";
 import { fetchUserDocs } from "../../functions/fetchUserDoc";
+import TopRadioText from "../../components/userIdPage/TopRadioText";
 
 const UserPage: React.VFC<UserProps> = (userProps) => {
   // カスタムフックでAuthからstateをset
@@ -25,7 +26,7 @@ const UserPage: React.VFC<UserProps> = (userProps) => {
   return (
     <>
       <Layout>
-        <HandmadeSpacer spacePixel="100px" />
+        <HeightSpacer spacePixel="100px" />
         <Center>
           <Box
             align="center"
@@ -43,22 +44,14 @@ const UserPage: React.VFC<UserProps> = (userProps) => {
               <Divider mb={5} />
               <Box pl={{ base: 2, md: 10 }} pr={{ base: 2, md: 10 }} w="100%">
                 <Center flexDirection="column" w="100%">
-                  <Text
-                    pt={2}
-                    pb={2}
-                    color="blackAlpha.700"
-                    fontWeight="bold"
-                    fontSize={{ base: "xs", md: "sm" }}
-                  >
-                    my listening radio programs are following....
-                  </Text>
+                  <TopRadioText />
                   <Radios userProps={userProps} />
                 </Center>
               </Box>
             </Center>
           </Box>
         </Center>
-        <HandmadeSpacer spacePixel="250px" />
+        <HeightSpacer spacePixel="250px" />
         <Footer />
       </Layout>
     </>
