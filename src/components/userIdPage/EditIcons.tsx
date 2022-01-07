@@ -2,7 +2,7 @@ import React from "react";
 import { CloseIcon, EditIcon } from "@chakra-ui/icons";
 import { RootState } from "../../redux/store";
 import { useDispatch, useSelector } from "react-redux";
-import { UserProps, UserState } from "../../types/global";
+import { UserProps } from "../../types/global";
 import { userSlice } from "../../redux/slice";
 import { Box, Flex, Tooltip, Icon } from "@chakra-ui/react";
 import SaveIconButton from "./SaveIconButton";
