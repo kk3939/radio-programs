@@ -9,6 +9,7 @@ import SaveIconButton from "./SaveIconButton";
 import { FiLogOut } from "react-icons/fi";
 import { useRouter } from "next/router";
 import { signOutFromApp } from "../../functions/authentication";
+import { isEditable } from "../../functions/isEditable";
 
 type Props = {
   userProps: UserProps;
@@ -21,7 +22,7 @@ const EditIcons: React.VFC<Props> = ({ userProps }) => {
   const isEdit: boolean = useSelector((state: RootState) => state.user.isEdit);
   return (
     <>
-      {isEdit && userProps.id === userId ? (
+      {isEditable(isEdit, userProps, userId) ? (
         <Flex
           pos="absolute"
           top={2}

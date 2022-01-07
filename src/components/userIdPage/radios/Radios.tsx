@@ -3,6 +3,7 @@ import { UserProps } from "../../../types/global";
 import { RootState } from "../../../redux/store";
 import { useSelector } from "react-redux";
 import Radio from "./Radio";
+import { isEditable } from "../../../functions/isEditable";
 
 type Props = {
   userProps: UserProps;
@@ -14,7 +15,7 @@ const Radios: React.VFC<Props> = ({ userProps }) => {
   const radios = useSelector((state: RootState) => state.user.radios);
   return (
     <>
-      {isEdit && userProps.id === userId
+      {isEditable(isEdit, userProps, userId)
         ? radios.map((radio, i) => (
             <Radio userProps={userProps} i={i} radio={radio} key={i} />
           ))
