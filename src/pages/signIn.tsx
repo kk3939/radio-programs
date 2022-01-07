@@ -1,19 +1,15 @@
 import React from "react";
-import {
-  Box,
-  Center,
-  Button,
-  Text,
-  Icon,
-  SimpleGrid,
-  useToast,
-} from "@chakra-ui/react";
+import { Box, Center, useToast } from "@chakra-ui/react";
 import Layout from "../components/Common/Layout";
 import LoginText from "../components/signInPage/LoginText";
 import SignInFlexButton from "../components/signInPage/SignInFlexButton";
 import PushToIndexButton from "../components/signInPage/PushToIndexButton";
+import { signInWithGoogle } from "../functions/authentication";
+import { useRouter } from "next/router";
 
 const SignIn: React.VFC = () => {
+  const router = useRouter();
+  const toast = useToast();
   return (
     <>
       <Layout>
@@ -27,8 +23,10 @@ const SignIn: React.VFC = () => {
           >
             <LoginText />
             <Center align="center" flexDirection="column">
-              <SignInFlexButton />
-              <PushToIndexButton />
+              <SignInFlexButton
+                onClick={() => signInWithGoogle(router, toast)}
+              />
+              <PushToIndexButton onClick={() => router.push("/")} />
             </Center>
           </Box>
         </Center>

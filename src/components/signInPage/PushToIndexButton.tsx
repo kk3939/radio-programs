@@ -2,8 +2,11 @@ import { Button } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import React from "react";
 
-const PushToIndexButton: React.VFC = () => {
-  const router = useRouter();
+type Props = {
+  onClick: () => void;
+};
+
+const PushToIndexButton: React.VFC<Props> = ({ onClick }) => {
   return (
     <Button
       colorScheme="blackAlpha"
@@ -12,7 +15,7 @@ const PushToIndexButton: React.VFC = () => {
       mb={10}
       size="sm"
       fontWeight="bold"
-      onClick={() => router.push("/")}
+      onClick={onClick}
     >
       Radio Programsとは？
     </Button>

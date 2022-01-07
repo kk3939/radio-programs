@@ -3,8 +3,10 @@ import DescriptionText from "../src/components/indexPage/DescriptionText";
 import { fireEvent, render, screen } from "@testing-library/react";
 import ServiceTop from "../src/components/indexPage/ServiceTop";
 import PushToSignInButton from "../src/components/indexPage/PushToSignInButton";
+import SignInFlexButton from "../src/components/signInPage/SignInFlexButton";
+import PushToIndexButton from "../src/components/signInPage/PushToIndexButton";
 
-describe("indexPage Test", () => {
+describe("component in index", () => {
   it("Is my contact displayed?", () => {
     render(<DescriptionText />);
     screen.getByText(
@@ -18,7 +20,22 @@ describe("indexPage Test", () => {
   it("Is button able to be pushed?", () => {
     const onClick = jest.fn();
     render(<PushToSignInButton onclick={onClick} />);
-    fireEvent.click(screen.getByText("Start Radio programs"));
+    fireEvent.click(screen.getByRole("button"));
+    expect(onClick).toHaveBeenCalledTimes(1);
+  });
+});
+
+describe("component in signIn", () => {
+  it("Is 'signIn button' able to be pushed", () => {
+    const onClick = jest.fn();
+    render(<SignInFlexButton onClick={onClick} />);
+    fireEvent.click(screen.getByRole("button"));
+    expect(onClick).toHaveBeenCalledTimes(1);
+  });
+  it("Is 'back to index button' able to be pushed", () => {
+    const onClick = jest.fn();
+    render(<PushToIndexButton onClick={onClick} />);
+    fireEvent.click(screen.getByRole("button"));
     expect(onClick).toHaveBeenCalledTimes(1);
   });
 });
