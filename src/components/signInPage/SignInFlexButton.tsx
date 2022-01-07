@@ -1,12 +1,12 @@
-import { Center, Icon, Text, useToast } from "@chakra-ui/react";
-import { useRouter } from "next/router";
+import { Center, Icon, Text } from "@chakra-ui/react";
 import React from "react";
 import { FcGoogle } from "react-icons/fc";
-import { signInWithGoogle } from "../../functions/authentication";
 
-const SignInFlexButton: React.VFC = () => {
-  const router = useRouter();
-  const toast = useToast();
+type Props = {
+  onClick: () => void;
+};
+
+const SignInFlexButton: React.VFC<Props> = ({ onClick }) => {
   return (
     <Center
       align="center"
@@ -16,9 +16,7 @@ const SignInFlexButton: React.VFC = () => {
       aria-pressed="false"
       tabIndex={0}
       aria-label="signIn"
-      onClick={() => {
-        signInWithGoogle(router, toast);
-      }}
+      onClick={onClick}
     >
       <Icon as={FcGoogle} w={20} h={20} mb={2} />
       <Text
