@@ -4,6 +4,7 @@ import { RootState } from "../../../redux/store";
 import { useDispatch, useSelector } from "react-redux";
 import { UserProps } from "../../../types/global";
 import { userSlice } from "../../../redux/slice";
+import { isEditable } from "../../../functions/isEditable";
 
 type Props = {
   radio: {
@@ -20,7 +21,7 @@ const RadioText: React.VFC<Props> = ({ radio, userProps, i }) => {
   const isEdit = useSelector((state: RootState) => state.user.isEdit);
   return (
     <>
-      {isEdit && userProps.id === userId ? (
+      {isEditable(isEdit, userProps, userId) ? (
         <Input
           bg="white"
           placeholder={radio.name}

@@ -9,7 +9,7 @@ import {
 } from "next";
 import { ParsedUrlQuery } from "querystring";
 import Layout from "../../components/Common/Layout";
-import EditIcons from "../../components/userIdPage/EditIcons";
+import IconButtons from "../../components/userIdPage/IconButtons";
 import HeightSpacer from "../../components/Common/HeightSpacer";
 import ProfileImage from "../../components/userIdPage/ProfileImage";
 import UserNameText from "../../components/userIdPage/UserNameText";
@@ -38,7 +38,7 @@ const UserPage: React.VFC<UserProps> = (userProps) => {
             boxShadow="lg"
           >
             <Center flexDirection="column" pos="relative">
-              <EditIcons userProps={userProps} />
+              <IconButtons userProps={userProps} />
               <ProfileImage userProps={userProps} />
               <UserNameText userProps={userProps} />
               <Divider mb={5} />

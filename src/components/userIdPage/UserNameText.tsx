@@ -4,6 +4,7 @@ import { UserProps } from "../../types/global";
 import { RootState } from "../../redux/store";
 import { useDispatch, useSelector } from "react-redux";
 import { userSlice } from "../../redux/slice";
+import { isEditable } from "../../functions/isEditable";
 
 type Props = {
   userProps: UserProps;
@@ -31,7 +32,7 @@ const UserNameText: React.VFC<Props> = ({ userProps }) => {
   };
   return (
     <>
-      {isEdit && userProps.id === userId ? (
+      {isEditable(isEdit, userProps, userId) ? (
         <Box mt={3} mb={3} w="40%">
           <Input
             placeholder={returnUserNameFromProps(userProps)}
