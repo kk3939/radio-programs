@@ -1,6 +1,6 @@
 /* eslint-disable react/react-in-jsx-scope */
 import { render, screen, fireEvent } from "../tools/test-util";
-import EditIcons from "../src/components/userIdPage/EditIcons";
+import IconButtons from "../src/components/userIdPage/IconButtons";
 import { UserProps } from "../src/types/global";
 
 const testUser: UserProps = {
@@ -20,7 +20,7 @@ const testUser: UserProps = {
 };
 describe("component in UserId", () => {
   it("editable icons check", () => {
-    render(<EditIcons userProps={testUser} />);
+    render(<IconButtons userProps={testUser} />);
     fireEvent.click(screen.getByRole("button"));
   });
 });
