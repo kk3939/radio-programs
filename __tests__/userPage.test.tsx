@@ -1,6 +1,5 @@
 /* eslint-disable react/react-in-jsx-scope */
-import { render } from "@testing-library/react";
-import { useSelector, useDispatch } from "react-redux";
+import { render, screen, fireEvent } from "../tools/test-util";
 import EditIcons from "../src/components/userIdPage/EditIcons";
 import { UserProps } from "../src/types/global";
 
@@ -20,11 +19,8 @@ const testUser: UserProps = {
   ],
 };
 describe("component in UserId", () => {
-  // beforeEach(() => {
-  //   const useSelectorMock = useSelector as jest.Mock<string>;
-  //   const useDispatchMock = useDispatch as jest.Mock;
-  // });
   it("editable icons check", () => {
     render(<EditIcons userProps={testUser} />);
+    fireEvent.click(screen.getByRole("button"));
   });
 });
