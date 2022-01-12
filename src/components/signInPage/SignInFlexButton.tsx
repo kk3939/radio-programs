@@ -8,16 +8,8 @@ type Props = {
 
 const SignInFlexButton: React.VFC<Props> = ({ onClick }) => {
   return (
-    <Center
-      align="center"
-      flexDirection="column"
-      p={2}
-      role="button"
-      aria-pressed="false"
-      tabIndex={0}
-      aria-label="signIn"
-      onClick={onClick}
-    >
+    // アクセシビリティのため、htmlを素で打つ
+    <button onClick={onClick}>
       <Icon as={FcGoogle} w={20} h={20} mb={2} />
       <Text
         color="gray.400"
@@ -26,7 +18,7 @@ const SignInFlexButton: React.VFC<Props> = ({ onClick }) => {
       >
         Sign in with Google
       </Text>
-    </Center>
+    </button>
   );
 };
 

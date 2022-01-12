@@ -1,5 +1,11 @@
 import React from "react";
-import { CheckIcon, CloseIcon, EditIcon } from "@chakra-ui/icons";
+import {
+  AddIcon,
+  CheckIcon,
+  CloseIcon,
+  EditIcon,
+  MinusIcon,
+} from "@chakra-ui/icons";
 import { Icon, Tooltip } from "@chakra-ui/react";
 import { FiLogOut } from "react-icons/fi";
 
@@ -70,6 +76,40 @@ export const SaveIconButton: React.VFC<ButtonProps> = ({ onClick }) => {
           w={7}
           h={7}
           color="green.400"
+          onClick={onClick}
+        />
+      </Tooltip>
+    </>
+  );
+};
+
+export const AddIconButton: React.VFC<ButtonProps> = ({ onClick }) => {
+  return (
+    <>
+      <Tooltip label="add a new radio" aria-label="add button description">
+        <AddIcon
+          role="button"
+          aria-label="add radio"
+          w={5}
+          h={5}
+          color="blackAlpha.700"
+          onClick={onClick}
+        />
+      </Tooltip>
+    </>
+  );
+};
+
+export const DeleteIconButton: React.VFC<ButtonProps> = ({ onClick }) => {
+  return (
+    <>
+      <Tooltip label="delete this radio" aria-label="delete button description">
+        <MinusIcon
+          role="button"
+          aria-label="add radio"
+          w={5}
+          h={5}
+          color="blackAlpha.700"
           onClick={onClick}
         />
       </Tooltip>

@@ -12,16 +12,16 @@ import {
   where,
 } from "firebase/firestore";
 import { NextRouter } from "next/router";
-import { Dispatch } from "react";
 import { auth, converter, db } from "../../firebase";
 import { userSlice } from "../redux/slice";
 import { UserDoc } from "../types/global";
 import { createUserDoc } from "./createUserDoc";
 import { useToast } from "@chakra-ui/react";
+import { useDispatch } from "react-redux";
 
 // hooks APIはfunctional component内でcallする必要があるため、引数で受け渡す
 export const signOutFromApp = (
-  dispatch: Dispatch<any>,
+  dispatch: ReturnType<typeof useDispatch>,
   router: NextRouter
 ): void => {
   signOut(auth)
