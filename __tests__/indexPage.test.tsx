@@ -1,4 +1,4 @@
-/* eslint-disable react/react-in-jsx-scope */
+import React from "react";
 import { fireEvent, render, screen } from "@testing-library/react";
 import DescriptionText from "../src/components/indexPage/DescriptionText";
 import PushToSignInButton from "../src/components/indexPage/PushToSignInButton";

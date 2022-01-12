@@ -4,10 +4,10 @@ import { Icon, Tooltip } from "@chakra-ui/react";
 import { FiLogOut } from "react-icons/fi";
 
 type ButtonProps = {
-  onclick: () => void;
+  onClick: () => void;
 };
 
-export const CloseIconButton: React.VFC<ButtonProps> = ({ onclick }) => {
+export const CloseIconButton: React.VFC<ButtonProps> = ({ onClick }) => {
   return (
     <>
       <Tooltip
@@ -20,14 +20,14 @@ export const CloseIconButton: React.VFC<ButtonProps> = ({ onclick }) => {
           w={5}
           h={5}
           color="blackAlpha.700"
-          onClick={onclick}
+          onClick={onClick}
         />
       </Tooltip>
     </>
   );
 };
 
-export const EditIconButton: React.VFC<ButtonProps> = ({ onclick }) => {
+export const EditIconButton: React.VFC<ButtonProps> = ({ onClick }) => {
   return (
     <>
       <Tooltip label="edit your page" aria-label="edit Button description">
@@ -37,14 +37,14 @@ export const EditIconButton: React.VFC<ButtonProps> = ({ onclick }) => {
           w={6}
           h={6}
           color="blackAlpha.700"
-          onClick={onclick}
+          onClick={onClick}
         />
       </Tooltip>
     </>
   );
 };
 
-export const LogoutIconButton: React.VFC<ButtonProps> = ({ onclick }) => {
+export const LogoutIconButton: React.VFC<ButtonProps> = ({ onClick }) => {
   return (
     <>
       <Icon
@@ -54,13 +54,13 @@ export const LogoutIconButton: React.VFC<ButtonProps> = ({ onclick }) => {
         color="red.400"
         role="button"
         aria-label="logout"
-        onClick={onclick}
+        onClick={onClick}
       />
     </>
   );
 };
 
-export const SaveIconButton: React.VFC<ButtonProps> = ({ onclick }) => {
+export const SaveIconButton: React.VFC<ButtonProps> = ({ onClick }) => {
   return (
     <>
       <Tooltip label="save your input" aria-label="save button description">
@@ -70,7 +70,7 @@ export const SaveIconButton: React.VFC<ButtonProps> = ({ onclick }) => {
           w={7}
           h={7}
           color="green.400"
-          onClick={onclick}
+          onClick={onClick}
         />
       </Tooltip>
     </>
