@@ -3,6 +3,7 @@ import type { AppProps } from "next/app";
 import { ChakraProvider, extendTheme } from "@chakra-ui/react";
 import "../asset/global.css";
 import { Provider } from "react-redux";
+import NextNprogress from "nextjs-progressbar";
 import { store } from "../redux/store";
 
 const theme = extendTheme({
@@ -19,6 +20,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <ChakraProvider theme={theme}>
       <Provider store={store}>
+        <NextNprogress />
         <Component {...pageProps} />
       </Provider>
     </ChakraProvider>
