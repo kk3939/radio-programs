@@ -51,11 +51,11 @@ const LoginAndEditableIconButtons: React.VFC = () => {
         w="30%"
       >
         <SaveIconButton
-          onclick={() => updateFirestoreData(user, toast, router)}
+          onClick={() => updateFirestoreData(user, toast, router)}
         />
         <Box w="15%" />
         <CloseIconButton
-          onclick={() => {
+          onClick={() => {
             dispatch(userSlice.actions.changeIsEdit());
           }}
         />
@@ -80,10 +80,10 @@ const LoginedIconButtons: React.VFC<IconButtonsProps> = ({ userProps }) => {
           w="30%"
         >
           <EditIconButton
-            onclick={() => dispatch(userSlice.actions.changeIsEdit())}
+            onClick={() => dispatch(userSlice.actions.changeIsEdit())}
           />
           <Box w="15%" />
-          <LogoutIconButton onclick={() => signOutFromApp(dispatch, router)} />
+          <LogoutIconButton onClick={() => signOutFromApp(dispatch, router)} />
         </Flex>
       ) : (
         ""

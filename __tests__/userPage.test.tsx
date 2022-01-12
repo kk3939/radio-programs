@@ -1,26 +1,35 @@
-/* eslint-disable react/react-in-jsx-scope */
+import React from "react";
 import { render, screen, fireEvent } from "../tools/test-util";
-import IconButtons from "../src/components/userIdPage/IconButtons";
-import { UserProps } from "../src/types/global";
+import {
+  CloseIconButton,
+  EditIconButton,
+  LogoutIconButton,
+  SaveIconButton,
+} from "../src/components/userIdPage/IconButton";
 
-const testUser: UserProps = {
-  name: "hoge",
-  photoUrl: "",
-  id: "000000",
-  radios: [
-    {
-      index: 0,
-      name: "三四郎のオールナイトニッポン0",
-    },
-    {
-      index: 1,
-      name: "オードリーのオールナイトニッポン",
-    },
-  ],
-};
 describe("component in UserId", () => {
-  it("editable icons check", () => {
-    render(<IconButtons userProps={testUser} />);
+  it("close iconButtons check", () => {
+    const onClick = jest.fn();
+    render(<CloseIconButton onClick={onClick} />);
     fireEvent.click(screen.getByRole("button"));
+    expect(onClick).toHaveBeenCalledTimes(1);
+  });
+  it("edit iconButtons check", () => {
+    const onClick = jest.fn();
+    render(<EditIconButton onClick={onClick} />);
+    fireEvent.click(screen.getByRole("button"));
+    expect(onClick).toHaveBeenCalledTimes(1);
+  });
+  it("logout iconButtons check", () => {
+    const onClick = jest.fn();
+    render(<LogoutIconButton onClick={onClick} />);
+    fireEvent.click(screen.getByRole("button"));
+    expect(onClick).toHaveBeenCalledTimes(1);
+  });
+  it("logout iconButtons check", () => {
+    const onClick = jest.fn();
+    render(<SaveIconButton onClick={onClick} />);
+    fireEvent.click(screen.getByRole("button"));
+    expect(onClick).toHaveBeenCalledTimes(1);
   });
 });

@@ -1,4 +1,4 @@
-/* eslint-disable react/react-in-jsx-scope */
+import React from "react";
 import { fireEvent, render, screen } from "@testing-library/react";
 import PushToIndexButton from "../src/components/signInPage/PushToIndexButton";
 import SignInFlexButton from "../src/components/signInPage/SignInFlexButton";

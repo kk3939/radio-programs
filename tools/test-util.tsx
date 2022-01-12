@@ -4,9 +4,9 @@ import { render as rtlRender } from "@testing-library/react";
 import { configureStore } from "@reduxjs/toolkit";
 import { Provider } from "react-redux";
 import { userSlice } from "../src/redux/slice";
-import { UserState } from "../src/types/global";
+import { RootState } from "../src/redux/store";
 
-const preloaded: { user: UserState } = {
+const initialState: RootState = {
   user: {
     name: "hoge",
     photoUrl: "",
@@ -29,7 +29,7 @@ const render = (
   ui: React.ReactElement<any>,
   {
     // @ts-expect-error
-    preloadedState = preloaded,
+    preloadedState = initialState,
     store = configureStore({
       reducer: { user: userSlice.reducer },
       preloadedState,
