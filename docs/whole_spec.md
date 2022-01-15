@@ -6,20 +6,52 @@
   - ログインページへ移動するボタン
 - login
   - ログインするためのページ
+  - buttonを中央に配置して、firebaseのログインポップアップが発動する
 - user/[userId]
-  - userのプロフィール画面
+  - userのプロフィール画面、サーバーサイドレンダリングで表示される
   - 自分の聞いているラジオ番組一覧を表示する
-- user/[userId]/edit
-  - ログインユーザー（本人）のみ編集可能
+  - ログインユーザーが自分のプロフィールを見ている時は編集IconとログアウトIconが表示される。
+    - ログアウトIconをクリックするとログアウトして、編集Iconをクリックすると編集画面になる。
+    - saveと元に戻るiconが編集中だと表示される。
 
 ## data構造
+### firebase
 - user
-  - uuid(ユーザー作成時に作成)
+  - id(uuid)
   - name
-  - email(ユーザー作成時に作成)
-  - password(ユーザー作成時に作成)
-  - radios
-    - `Array`
-- radios
-  - uuid
+  - photoUrl
+  - radios[]
+    - index
+    - name
+
+### state
+- user
+  - id(uuid)
   - name
+  - photoUrl
+  - radios[]
+    - index
+    - name
+  - isEdit
+
+## tech
+### main
+- Next(React)
+- Typescript
+
+### manage state
+- redux
+
+### style
+- chakraUI
+
+### Baas
+- firebase
+
+## tests
+- unit test(jest)
+  - component
+  - function
+  - firestore rule
+- VR test(storybook)
+- E2E test(cypress)
