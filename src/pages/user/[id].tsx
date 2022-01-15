@@ -18,17 +18,11 @@ import { initialState } from "../../redux/slice";
 import { fetchUserDocs } from "../../functions/fetchUserDoc";
 import { Text } from "../../components/Common/Text/Text";
 import Image from "../../components/Common/Image/Image";
+import { returnPhotoUrl } from "../../functions/validation";
 
 const UserPage: React.VFC<UserProps> = (userProps) => {
   // カスタムフックでAuthからstateをset
   setLoginUserState(userProps);
-
-  const returnPhotoUrl = (arg: UserProps): string | undefined => {
-    if (arg.photoUrl === null) {
-      return undefined;
-    }
-    return arg.photoUrl;
-  };
 
   return (
     <>

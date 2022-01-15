@@ -7,6 +7,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { userSlice } from "../../redux/slice";
 import { isEditable } from "../../functions/isEditable";
 import Input from "../Common/Input/Input";
+import {
+  returnUserNameFromProps,
+  returnUserNameFromState,
+} from "../../functions/validation";
 
 type Props = {
   userProps: UserProps;
@@ -20,18 +24,6 @@ const UserNameText: React.VFC<Props> = ({ userProps }) => {
     (state: RootState) => state.user.name
   );
 
-  const returnUserNameFromProps = (arg: UserProps): string => {
-    if (arg.name === null) {
-      return "This user's name isn't setup.";
-    }
-    return arg.name;
-  };
-  const returnUserNameFromState = (arg: string | null): string => {
-    if (arg === null) {
-      return "This user's name isn't setup.";
-    }
-    return arg;
-  };
   return (
     <>
       {isEditable(isEdit, userProps, userId) ? (
