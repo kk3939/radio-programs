@@ -9,7 +9,7 @@ import {
 } from "next";
 import { ParsedUrlQuery } from "querystring";
 import Layout from "../../components/Common/Layouts/Layout";
-import IconButtons from "../../components/userIdPage/IconButtons";
+import IconButtonsMenu from "../../components/userIdPage/IconButtonsMenu";
 import HeightSpacer from "../../components/Common/Layouts/HeightSpacer";
 import UserNameText from "../../components/userIdPage/UserNameText";
 import Radios from "../../components/userIdPage/radios/Radios";
@@ -45,7 +45,7 @@ const UserPage: React.VFC<UserProps> = (userProps) => {
             boxShadow="lg"
           >
             <Center flexDirection="column" pos="relative">
-              <IconButtons userProps={userProps} />
+              <IconButtonsMenu userProps={userProps} />
               <Image
                 borderRadius="full"
                 boxSize="100px"
