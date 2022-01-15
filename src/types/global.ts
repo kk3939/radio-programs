@@ -43,3 +43,9 @@ export type ImageProps = {
   boxSize: string;
   alt: string;
 };
+
+export type InputProps = {
+  placeholder: string;
+  value: string;
+  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+};
