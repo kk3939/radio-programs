@@ -9,7 +9,7 @@ import {
   AddIconButton,
   DeleteIconButton,
 } from "../../Common/Buttons/IconButton";
-import { addRadio, deleteRadio } from "../../../functions/radioDispath";
+import { addRadio, deleteRadio } from "../../../functions/radioDispatch";
 type Props = {
   userProps: UserProps;
   i: number;

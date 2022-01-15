@@ -1,5 +1,5 @@
 import { Dispatch, PayloadAction } from "@reduxjs/toolkit";
-import { UserState } from "../types/global";
+import { ReducerType, UserState } from "../types/global";
 
 export const addRadio = (
   radios: Array<{
@@ -7,7 +7,7 @@ export const addRadio = (
     name: string;
   }>,
   dispatch: Dispatch<any>,
-  reducer: { payload: { index: number }; type: string }
+  reducer: ReducerType
 ) => {
   if (radios.length === 20) {
     alert("Sorry, radio's limits is 20.");
@@ -21,7 +21,7 @@ export const deleteRadio = (
     name: string;
   }>,
   dispatch: Dispatch<any>,
-  reducer: { payload: { index: number }; type: string }
+  reducer: ReducerType
 ) => {
   if (radios.length === 1) {
     alert("Radio's minimum value is 1. ");
