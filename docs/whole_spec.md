@@ -14,6 +14,11 @@
     - ログアウトIconをクリックするとログアウトして、編集Iconをクリックすると編集画面になる。
     - saveと元に戻るiconが編集中だと表示される。
 
+## component
+- /src/component配下に置いている
+- Common配下は共通コンポーネント
+- 〜〜〜Pageの部分はintegrateされたcomponent
+
 ## data構造
 ### firebase
 - user
