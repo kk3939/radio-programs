@@ -17,3 +17,7 @@ export type UserState = UserDoc & {
 };
 
 export type UserProps = UserDoc;
+
+export type ButtonProps = {
+  onClick: () => void;
+};

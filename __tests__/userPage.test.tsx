@@ -5,7 +5,7 @@ import {
   EditIconButton,
   LogoutIconButton,
   SaveIconButton,
-} from "../src/components/userIdPage/IconButton";
+} from "../src/components/Common/Buttons/IconButton";
 
 describe("component in UserId", () => {
   it("close iconButtons check", () => {

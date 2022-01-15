@@ -1,11 +1,8 @@
 import { Button } from "@chakra-ui/react";
 import React from "react";
+import { ButtonProps } from "../../../types/global";
 
-type Props = {
-  onclick: () => void;
-};
-
-const PushToSignInButton: React.VFC<Props> = ({ onclick }) => {
+const PushToSignInButton: React.VFC<ButtonProps> = ({ onClick }) => {
   return (
     <Button
       fontSize="lg"
@@ -13,7 +10,7 @@ const PushToSignInButton: React.VFC<Props> = ({ onclick }) => {
       color="cyan.700"
       borderRadius="25px"
       size="lg"
-      onClick={onclick}
+      onClick={onClick}
     >
       Start Radio programs
     </Button>

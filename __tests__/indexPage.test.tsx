@@ -1,7 +1,7 @@
 import React from "react";
 import { fireEvent, render, screen } from "@testing-library/react";
 import DescriptionText from "../src/components/indexPage/DescriptionText";
-import PushToSignInButton from "../src/components/indexPage/PushToSignInButton";
+import PushToSignInButton from "../src/components/Common/Buttons/PushToSignInButton";
 import ServiceTop from "../src/components/indexPage/ServiceTop";
 
 describe("component in index", () => {
@@ -17,7 +17,7 @@ describe("component in index", () => {
   });
   it("Is button able to be pushed?", () => {
     const onClick = jest.fn();
-    render(<PushToSignInButton onclick={onClick} />);
+    render(<PushToSignInButton onClick={onClick} />);
     fireEvent.click(screen.getByRole("button"));
     expect(onClick).toHaveBeenCalledTimes(1);
   });

@@ -13,7 +13,7 @@ import {
   EditIconButton,
   LogoutIconButton,
   SaveIconButton,
-} from "./IconButton";
+} from "../Common/Buttons/IconButton";
 
 type IconButtonsProps = {
   userProps: UserProps;

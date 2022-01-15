@@ -1,12 +1,14 @@
-import { AddIcon, MinusIcon } from "@chakra-ui/icons";
-import { Box, Tooltip } from "@chakra-ui/react";
+import { Box } from "@chakra-ui/react";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../../redux/store";
 import { UserProps } from "../../../types/global";
 import { userSlice } from "../../../redux/slice";
 import { isEditable } from "../../../functions/isEditable";
-import { AddIconButton, DeleteIconButton } from "../IconButton";
+import {
+  AddIconButton,
+  DeleteIconButton,
+} from "../../Common/Buttons/IconButton";
 type Props = {
   userProps: UserProps;
   i: number;

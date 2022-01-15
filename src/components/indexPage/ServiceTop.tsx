@@ -1,7 +1,7 @@
 import { Text, Button, Center } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import React from "react";
-import PushToSignInButton from "./PushToSignInButton";
+import PushToSignInButton from "../Common/Buttons/PushToSignInButton";
 
 const ServiceTop: React.VFC = () => {
   const router = useRouter();
@@ -20,7 +20,7 @@ const ServiceTop: React.VFC = () => {
           Share your radios.
         </Text>
         <Center align="center" w="100%" h="200px">
-          <PushToSignInButton onclick={() => router.push("/signIn")} />
+          <PushToSignInButton onClick={() => router.push("/signIn")} />
         </Center>
       </Center>
     </>

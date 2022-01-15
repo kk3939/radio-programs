@@ -8,10 +8,7 @@ import {
 } from "@chakra-ui/icons";
 import { Icon, Tooltip } from "@chakra-ui/react";
 import { FiLogOut } from "react-icons/fi";
-
-type ButtonProps = {
-  onClick: () => void;
-};
+import { ButtonProps } from "../../../types/global";
 
 export const CloseIconButton: React.VFC<ButtonProps> = ({ onClick }) => {
   return (
