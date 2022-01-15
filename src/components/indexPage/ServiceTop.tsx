@@ -1,7 +1,8 @@
-import { Text, Button, Center } from "@chakra-ui/react";
+import { Center } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import React from "react";
-import PushToSignInButton from "../Common/Buttons/PushToSignInButton";
+import { WhiteButton } from "../Common/Buttons/NormalButton";
+import { Text } from "../Common/Text/Text";
 
 const ServiceTop: React.VFC = () => {
   const router = useRouter();
@@ -15,12 +16,13 @@ const ServiceTop: React.VFC = () => {
             lg: "9xl",
           }}
           color="white"
-          fontWeight="bold"
-        >
-          Share your radios.
-        </Text>
+          text="Share your radios."
+        />
         <Center align="center" w="100%" h="200px">
-          <PushToSignInButton onClick={() => router.push("/signIn")} />
+          <WhiteButton
+            text="start radio programs"
+            onClick={() => router.push("/signIn")}
+          />
         </Center>
       </Center>
     </>

@@ -1,16 +1,16 @@
 import React from "react";
 import { UserDoc, UserProps } from "../../types/global";
 import { Box, Center, Divider } from "@chakra-ui/react";
-import Footer from "../../components/Common/Footer";
+import Footer from "../../components/Common/Footer/Footer";
 import {
   GetServerSideProps,
   GetServerSidePropsContext,
   PreviewData,
 } from "next";
 import { ParsedUrlQuery } from "querystring";
-import Layout from "../../components/Common/Layout";
+import Layout from "../../components/Common/Layouts/Layout";
 import IconButtons from "../../components/userIdPage/IconButtons";
-import HeightSpacer from "../../components/Common/HeightSpacer";
+import HeightSpacer from "../../components/Common/Layouts/HeightSpacer";
 import ProfileImage from "../../components/userIdPage/ProfileImage";
 import UserNameText from "../../components/userIdPage/UserNameText";
 import Radios from "../../components/userIdPage/radios/Radios";

@@ -8,9 +8,9 @@ import {
 } from "@chakra-ui/icons";
 import { Icon, Tooltip } from "@chakra-ui/react";
 import { FiLogOut } from "react-icons/fi";
-import { ButtonProps } from "../../../types/global";
+import { IconButtonProps } from "../../../types/global";
 
-export const CloseIconButton: React.VFC<ButtonProps> = ({ onClick }) => {
+export const CloseIconButton: React.VFC<IconButtonProps> = ({ onClick }) => {
   return (
     <>
       <Tooltip
@@ -30,7 +30,7 @@ export const CloseIconButton: React.VFC<ButtonProps> = ({ onClick }) => {
   );
 };
 
-export const EditIconButton: React.VFC<ButtonProps> = ({ onClick }) => {
+export const EditIconButton: React.VFC<IconButtonProps> = ({ onClick }) => {
   return (
     <>
       <Tooltip label="edit your page" aria-label="edit Button description">
@@ -47,7 +47,7 @@ export const EditIconButton: React.VFC<ButtonProps> = ({ onClick }) => {
   );
 };
 
-export const LogoutIconButton: React.VFC<ButtonProps> = ({ onClick }) => {
+export const LogoutIconButton: React.VFC<IconButtonProps> = ({ onClick }) => {
   return (
     <>
       <Icon
@@ -63,7 +63,7 @@ export const LogoutIconButton: React.VFC<ButtonProps> = ({ onClick }) => {
   );
 };
 
-export const SaveIconButton: React.VFC<ButtonProps> = ({ onClick }) => {
+export const SaveIconButton: React.VFC<IconButtonProps> = ({ onClick }) => {
   return (
     <>
       <Tooltip label="save your input" aria-label="save button description">
@@ -80,7 +80,7 @@ export const SaveIconButton: React.VFC<ButtonProps> = ({ onClick }) => {
   );
 };
 
-export const AddIconButton: React.VFC<ButtonProps> = ({ onClick }) => {
+export const AddIconButton: React.VFC<IconButtonProps> = ({ onClick }) => {
   return (
     <>
       <Tooltip label="add a new radio" aria-label="add button description">
@@ -97,7 +97,7 @@ export const AddIconButton: React.VFC<ButtonProps> = ({ onClick }) => {
   );
 };
 
-export const DeleteIconButton: React.VFC<ButtonProps> = ({ onClick }) => {
+export const DeleteIconButton: React.VFC<IconButtonProps> = ({ onClick }) => {
   return (
     <>
       <Tooltip label="delete this radio" aria-label="delete button description">
