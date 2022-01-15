@@ -11,17 +11,24 @@ import { ParsedUrlQuery } from "querystring";
 import Layout from "../../components/Common/Layouts/Layout";
 import IconButtons from "../../components/userIdPage/IconButtons";
 import HeightSpacer from "../../components/Common/Layouts/HeightSpacer";
-import ProfileImage from "../../components/userIdPage/ProfileImage";
 import UserNameText from "../../components/userIdPage/UserNameText";
 import Radios from "../../components/userIdPage/radios/Radios";
 import { setLoginUserState } from "../../functions/setLoginUserState";
 import { initialState } from "../../redux/slice";
 import { fetchUserDocs } from "../../functions/fetchUserDoc";
-import TopRadioText from "../../components/userIdPage/TopRadioText";
+import { Text } from "../../components/Common/Text/Text";
+import Image from "../../components/Common/Image/Image";
 
 const UserPage: React.VFC<UserProps> = (userProps) => {
   // カスタムフックでAuthからstateをset
   setLoginUserState(userProps);
+
+  const returnPhotoUrl = (arg: UserProps): string | undefined => {
+    if (arg.photoUrl === null) {
+      return undefined;
+    }
+    return arg.photoUrl;
+  };
 
   return (
     <>
@@ -39,12 +46,23 @@ const UserPage: React.VFC<UserProps> = (userProps) => {
           >
             <Center flexDirection="column" pos="relative">
               <IconButtons userProps={userProps} />
-              <ProfileImage userProps={userProps} />
+              <Image
+                borderRadius="full"
+                boxSize="100px"
+                src={returnPhotoUrl(userProps)}
+                alt="user"
+              />
               <UserNameText userProps={userProps} />
               <Divider mb={5} />
               <Box pl={{ base: 2, md: 10 }} pr={{ base: 2, md: 10 }} w="100%">
                 <Center flexDirection="column" w="100%">
-                  <TopRadioText />
+                  <Text
+                    pt={2}
+                    pb={2}
+                    color="blackAlpha.700"
+                    fontSize={{ base: "xs", md: "sm" }}
+                    text="my listening radio programs are following...."
+                  />
                   <Radios userProps={userProps} />
                 </Center>
               </Box>

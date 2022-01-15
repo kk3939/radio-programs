@@ -29,7 +29,7 @@ export type NormalButtonProps = {
 
 export type TextProps = {
   fontSize: string | object;
-  color: string;
+  color?: string;
   text: string;
   pt?: `${string}px` | number;
   pr?: `${string}px` | number;
@@ -39,7 +39,7 @@ export type TextProps = {
 
 export type ImageProps = {
   borderRadius: string;
-  src: string;
+  src: string | undefined;
   boxSize: string;
   alt: string;
 };

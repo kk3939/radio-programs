@@ -1,6 +1,6 @@
 import { Center } from "@chakra-ui/react";
 import React from "react";
-import DescriptionImage from "./DescriptionImage";
+import Image from "../Common/Image/Image";
 import DescriptionText from "./DescriptionTexts";
 
 const ServiceDescription: React.VFC = () => {
@@ -12,7 +12,12 @@ const ServiceDescription: React.VFC = () => {
         p={{ base: 10, sm: 20 }}
         flexWrap="wrap"
       >
-        <DescriptionImage />
+        <Image
+          borderRadius="50px"
+          src="/profile2.png"
+          boxSize="400px"
+          alt="sample user page UI"
+        />
         <DescriptionText />
       </Center>
     </>
