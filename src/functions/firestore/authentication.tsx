@@ -1,5 +1,7 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import {
   GoogleAuthProvider,
+  onAuthStateChanged,
   signInWithPopup,
   signOut,
   User,
@@ -12,12 +14,13 @@ import {
   where,
 } from "firebase/firestore";
 import { NextRouter } from "next/router";
-import { auth, converter, db } from "../../firebase";
-import { userSlice } from "../redux/slice";
-import { UserDoc } from "../types/global";
+import { auth, converter, db } from "../../../firebase";
+import { userSlice } from "../../redux/slice";
+import { UserDoc, UserProps } from "../../types/global";
 import { createUserDoc } from "./createUserDoc";
 import { useToast } from "@chakra-ui/react";
 import { useDispatch } from "react-redux";
+import { useEffect } from "react";
 
 // hooks APIはfunctional component内でcallする必要があるため、引数で受け渡す
 export const signOutFromApp = (
@@ -72,4 +75,37 @@ export const signInWithGoogle = (
         isClosable: true,
       });
     });
+};
+
+export const setLoginUserState = (userProps: UserProps): void => {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    // ログインしているユーザーと同じmyPageでないとstateがセットされない。
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        if (user.uid === userProps.id) {
+          const radios: Array<{
+            index: number;
+            name: string;
+          }> = [];
+          userProps.radios.forEach((radio) => {
+            radios.push(radio);
+          });
+          const docData: UserDoc = {
+            id: user.uid,
+            photoUrl: user.photoURL,
+            name: user.displayName,
+            radios: radios,
+          };
+          dispatch(
+            userSlice.actions.setUser({
+              ...docData,
+              isEdit: false,
+            })
+          );
+        }
+      }
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 };

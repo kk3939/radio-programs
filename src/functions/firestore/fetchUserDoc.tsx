@@ -4,9 +4,9 @@ import {
   DocumentSnapshot,
   getDoc,
 } from "firebase/firestore";
-import { converter, db } from "../../firebase";
-import { initialState } from "../redux/slice";
-import { UserDoc, UserProps } from "../types/global";
+import { converter, db } from "../../../firebase";
+import { initialState } from "../../redux/slice";
+import { UserDoc, UserProps } from "../../types/global";
 
 export async function fetchUserDocs(id: string): Promise<UserProps> {
   const userDocRef: DocumentReference<UserDoc> = doc(
