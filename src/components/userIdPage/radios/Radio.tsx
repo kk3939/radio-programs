@@ -1,4 +1,5 @@
-import { Text, Box, Center, Flex } from "@chakra-ui/react";
+import { Box, Center, Flex } from "@chakra-ui/react";
+import { Text } from "../../Common/Text/Text";
 import React from "react";
 import { UserProps } from "../../../types/global";
 import ButtonsInRadio from "./Buttons";
@@ -25,7 +26,7 @@ const Radio: React.VFC<Props> = ({ userProps, i, radio }) => {
               bg="blue.50"
             >
               <Flex justifyContent="center" h="100%" align="center">
-                <Text fontSize={{ base: "2xl", md: "4xl" }}>📻</Text>
+                <Text fontSize={{ base: "2xl", md: "4xl" }} text="📻" />
               </Flex>
             </Box>
           </Box>

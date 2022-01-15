@@ -1,5 +1,6 @@
 import React from "react";
-import { Box, Input, Text } from "@chakra-ui/react";
+import { Box, Input } from "@chakra-ui/react";
+import { Text } from "../Common/Text/Text";
 import { UserProps } from "../../types/global";
 import { RootState } from "../../redux/store";
 import { useDispatch, useSelector } from "react-redux";
@@ -43,9 +44,15 @@ const UserNameText: React.VFC<Props> = ({ userProps }) => {
           />
         </Box>
       ) : (
-        <Text fontSize="lg" fontWeight="bold" p={3}>
-          {returnUserNameFromProps(userProps)}
-        </Text>
+        <Text
+          fontSize="lg"
+          pt={3}
+          pr={3}
+          pl={3}
+          pb={3}
+          text={returnUserNameFromProps(userProps)}
+          color="black"
+        />
       )}
     </>
   );

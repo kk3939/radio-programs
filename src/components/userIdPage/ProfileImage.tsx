@@ -1,5 +1,5 @@
 import React from "react";
-import { Image } from "@chakra-ui/react";
+import Image from "../Common/Image/Image";
 import { UserProps } from "../../types/global";
 
 type Props = {
@@ -21,7 +21,6 @@ const ProfileImage: React.VFC<Props> = ({ userProps }) => {
         boxSize="100px"
         src={returnPhotoUrl(userProps)}
         alt="user"
-        mt={5}
       />
     </>
   );
