@@ -24,7 +24,6 @@ const RadioText: React.VFC<Props> = ({ radio, userProps, i }) => {
     <>
       {isEditable(isEdit, userProps, userId) ? (
         <Input
-          bg="white"
           placeholder={radio.name}
           value={radio.name}
           onChange={(event) =>
