@@ -1,9 +1,11 @@
 import React from "react";
 import { Box, Center, useToast } from "@chakra-ui/react";
-import Layout from "../components/Common/Layout";
-import LoginText from "../components/signInPage/LoginText";
-import SignInFlexButton from "../components/signInPage/SignInFlexButton";
-import PushToIndexButton from "../components/signInPage/PushToIndexButton";
+import Layout from "../components/Common/Layouts/Layout";
+import { Text } from "../components/Common/Text/Text";
+import {
+  GrayButton,
+  SignInButton,
+} from "../components/Common/Buttons/NormalButton";
 import { signInWithGoogle } from "../functions/authentication";
 import { useRouter } from "next/router";
 
@@ -21,12 +23,24 @@ const SignIn: React.VFC = () => {
             p={5}
             boxShadow="lg"
           >
-            <LoginText />
+            <Text
+              fontSize="2xl"
+              color="black"
+              pt={10}
+              pr={2}
+              pl={2}
+              pb={10}
+              text="Log in to your account."
+            />
             <Center align="center" flexDirection="column">
-              <SignInFlexButton
+              <SignInButton
                 onClick={() => signInWithGoogle(router, toast)}
+                text="SignIn with Google"
               />
-              <PushToIndexButton onClick={() => router.push("/")} />
+              <GrayButton
+                onClick={() => router.push("/")}
+                text="radio programsとは？"
+              />
             </Center>
           </Box>
         </Center>

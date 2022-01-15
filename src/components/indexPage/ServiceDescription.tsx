@@ -1,7 +1,7 @@
 import { Center } from "@chakra-ui/react";
 import React from "react";
 import DescriptionImage from "./DescriptionImage";
-import DescriptionText from "./DescriptionText";
+import DescriptionText from "./DescriptionTexts";
 
 const ServiceDescription: React.VFC = () => {
   return (

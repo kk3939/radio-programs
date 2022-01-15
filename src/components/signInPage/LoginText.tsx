@@ -1,11 +1,17 @@
-import { Center } from "@chakra-ui/react";
 import React from "react";
+import { Text } from "../Common/Text/Text";
 
 const LoginText: React.VFC = () => {
   return (
-    <Center h="100px" fontSize="2xl" color="black" p={2} fontWeight="bold">
-      Log in to your account.
-    </Center>
+    <Text
+      fontsize="2xl"
+      color="black"
+      pt={10}
+      pr={2}
+      pl={2}
+      pb={10}
+      text="Log in to your account."
+    />
   );
 };
 

@@ -18,6 +18,28 @@ export type UserState = UserDoc & {
 
 export type UserProps = UserDoc;
 
-export type ButtonProps = {
+export type IconButtonProps = {
   onClick: () => void;
+};
+
+export type NormalButtonProps = {
+  onClick: () => void;
+  text: string;
+};
+
+export type TextProps = {
+  fontSize: string | object;
+  color: string;
+  text: string;
+  pt?: `${string}px` | number;
+  pr?: `${string}px` | number;
+  pb?: `${string}px` | number;
+  pl?: `${string}px` | number;
+};
+
+export type ImageProps = {
+  borderRadius: string;
+  src: string;
+  boxSize: string;
+  alt: string;
 };
