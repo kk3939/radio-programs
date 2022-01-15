@@ -1,11 +1,11 @@
 import React from "react";
-import { Input } from "@chakra-ui/react";
 import { Text } from "../../Common/Text/Text";
 import { RootState } from "../../../redux/store";
 import { useDispatch, useSelector } from "react-redux";
 import { UserProps } from "../../../types/global";
 import { userSlice } from "../../../redux/slice";
 import { isEditable } from "../../../functions/isEditable";
+import Input from "../../Common/Input/Input";
 
 type Props = {
   radio: {

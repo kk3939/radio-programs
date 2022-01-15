@@ -1,11 +1,12 @@
 import React from "react";
-import { Box, Input } from "@chakra-ui/react";
+import { Box } from "@chakra-ui/react";
 import { Text } from "../Common/Text/Text";
 import { UserProps } from "../../types/global";
 import { RootState } from "../../redux/store";
 import { useDispatch, useSelector } from "react-redux";
 import { userSlice } from "../../redux/slice";
 import { isEditable } from "../../functions/isEditable";
+import Input from "../Common/Input/Input";
 
 type Props = {
   userProps: UserProps;
