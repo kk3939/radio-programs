@@ -1,5 +1,5 @@
-import { Dispatch, PayloadAction } from "@reduxjs/toolkit";
-import { ReducerType, UserState } from "../types/global";
+import { Dispatch } from "@reduxjs/toolkit";
+import { ReducerType } from "../types/global";
 
 export const addRadio = (
   radios: Array<{
