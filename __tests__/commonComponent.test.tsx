@@ -20,6 +20,9 @@ describe("Common Unit Test", () => {
     render(<WhiteButton onClick={onClick} text="test1" />);
     render(<GrayButton onClick={onClick} text="test2" />);
     render(<SignInButton onClick={onClick} text="test3" />);
+    expect(screen.getByText("test1")).toBeInTheDocument();
+    expect(screen.getByText("test2")).toBeInTheDocument();
+    expect(screen.getByText("test3")).toBeInTheDocument();
     fireEvent.click(screen.getByText("test1"));
     fireEvent.click(screen.getByText("test2"));
     fireEvent.click(screen.getByText("test3"));
