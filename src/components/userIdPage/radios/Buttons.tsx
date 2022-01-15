@@ -9,6 +9,7 @@ import {
   AddIconButton,
   DeleteIconButton,
 } from "../../Common/Buttons/IconButton";
+import { addRadio, deleteRadio } from "../../../functions/radioDispatch";
 type Props = {
   userProps: UserProps;
   i: number;
@@ -20,31 +21,31 @@ const ButtonsInRadio: React.VFC<Props> = ({ userProps, i }) => {
   const userId = useSelector((state: RootState) => state.user.id);
   const radios = useSelector((state: RootState) => state.user.radios);
 
-  const addRadio = () => {
-    if (radios.length === 20) {
-      alert("Sorry, radio's limits is 20.");
-      return;
-    }
-    dispatch(userSlice.actions.addRadio({ index: i }));
-  };
-
-  const deleteRadio = () => {
-    if (radios.length === 1) {
-      alert("Radio's minimum value is 1. ");
-      return;
-    }
-    dispatch(userSlice.actions.deleteRadio({ index: i }));
-  };
-
   return (
     <>
       {isEditable(isEdit, userProps, userId) ? (
         <>
           <Box pl={20} pr={5}>
-            <AddIconButton onClick={() => addRadio()} />
+            <AddIconButton
+              onClick={() =>
+                addRadio(
+                  radios,
+                  dispatch,
+                  userSlice.actions.addRadio({ index: i })
+                )
+              }
+            />
           </Box>
           <Box pl={5} pr={10}>
-            <DeleteIconButton onClick={() => deleteRadio()} />
+            <DeleteIconButton
+              onClick={() =>
+                deleteRadio(
+                  radios,
+                  dispatch,
+                  userSlice.actions.deleteRadio({ index: i })
+                )
+              }
+            />
           </Box>
         </>
       ) : (

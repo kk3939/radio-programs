@@ -49,3 +49,5 @@ export type InputProps = {
   value: string;
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 };
+
+export type ReducerType = { payload: { index: number }; type: string };

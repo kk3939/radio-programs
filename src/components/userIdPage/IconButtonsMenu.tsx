@@ -5,9 +5,9 @@ import { UserProps, UserState } from "../../types/global";
 import { userSlice } from "../../redux/slice";
 import { Box, Flex, useToast } from "@chakra-ui/react";
 import { useRouter } from "next/router";
-import { signOutFromApp } from "../../functions/authentication";
+import { signOutFromApp } from "../../functions/firestore/authentication";
 import { isEditable } from "../../functions/isEditable";
-import { updateFirestoreData } from "../../functions/updateFirestoreData";
+import { updateUserDoc } from "../../functions/firestore/updateUserDoc";
 import {
   CloseIconButton,
   EditIconButton,
@@ -19,8 +19,7 @@ type IconButtonsProps = {
   userProps: UserProps;
 };
 
-// UrlのId部分から取得したfirestoreのユーザーのデータとAuthからstateにセットした現在のログインユーザーを比較して、コンポーネントの表示を切り替える。
-const IconButtons: React.VFC<IconButtonsProps> = ({ userProps }) => {
+const IconButtonsMenu: React.VFC<IconButtonsProps> = ({ userProps }) => {
   const userId: string = useSelector((state: RootState) => state.user.id);
   const isEdit: boolean = useSelector((state: RootState) => state.user.isEdit);
   return (
@@ -33,7 +32,7 @@ const IconButtons: React.VFC<IconButtonsProps> = ({ userProps }) => {
     </>
   );
 };
-export default IconButtons;
+export default IconButtonsMenu;
 
 const LoginAndEditableIconButtons: React.VFC = () => {
   const router = useRouter();
@@ -50,9 +49,7 @@ const LoginAndEditableIconButtons: React.VFC = () => {
         justifyContent="right"
         w="30%"
       >
-        <SaveIconButton
-          onClick={() => updateFirestoreData(user, toast, router)}
-        />
+        <SaveIconButton onClick={() => updateUserDoc(user, toast, router)} />
         <Box w="15%" />
         <CloseIconButton
           onClick={() => {

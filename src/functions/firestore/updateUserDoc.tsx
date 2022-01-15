@@ -1,10 +1,10 @@
 import { useToast } from "@chakra-ui/react";
 import { doc, setDoc } from "firebase/firestore";
 import { NextRouter } from "next/router";
-import { db } from "../../firebase";
-import { UserState } from "../types/global";
+import { db } from "../../../firebase";
+import { UserState } from "../../types/global";
 
-export const updateFirestoreData = async (
+export const updateUserDoc = async (
   userState: UserState,
   toast: ReturnType<typeof useToast>,
   router: NextRouter

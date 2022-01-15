@@ -1,7 +1,7 @@
 import { User } from "firebase/auth";
 import { doc, setDoc } from "firebase/firestore";
-import { db } from "../../firebase";
-import { UserDoc } from "../types/global";
+import { db } from "../../../firebase";
+import { UserDoc } from "../../types/global";
 
 export const createUserDoc = async (user: User) => {
   const docData: UserDoc = {

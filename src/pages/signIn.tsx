@@ -6,7 +6,7 @@ import {
   GrayButton,
   SignInButton,
 } from "../components/Common/Buttons/NormalButton";
-import { signInWithGoogle } from "../functions/authentication";
+import { signInWithGoogle } from "../functions/firestore/authentication";
 import { useRouter } from "next/router";
 
 const SignIn: React.VFC = () => {
