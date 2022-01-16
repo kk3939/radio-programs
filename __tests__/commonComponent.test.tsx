@@ -1,4 +1,5 @@
-import { fireEvent, render, screen } from "@testing-library/react";
+import { cleanup, fireEvent, render, screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import "@testing-library/jest-dom";
 import React from "react";
 import {
@@ -15,8 +16,13 @@ import {
   LogoutIconButton,
 } from "../src/components/Common/Buttons/IconButton";
 import Footer from "../src/components/Common/Footer/Footer";
+import Input from "../src/components/Common/Input/Input";
+import Image from "../src/components/Common/Image/Image";
+import HeightSpacer from "../src/components/Common/Layouts/HeightSpacer";
 
 describe("Common Unit Test", () => {
+  afterEach(() => cleanup());
+
   it("Text", () => {
     render(<Text fontSize="2xl" text="test1" />);
     expect(screen.getByText("test1")).toBeInTheDocument();
@@ -57,5 +63,31 @@ describe("Common Unit Test", () => {
     expect(
       screen.getByText("kyosuke kubo, All rights reserved.")
     ).toBeInTheDocument();
+  });
+
+  it("Input", () => {
+    const onChange = jest.fn();
+    render(<Input placeholder="placeholder" value="" onChange={onChange} />);
+    userEvent.type(screen.getByPlaceholderText("placeholder"), "test");
+    expect(onChange).toHaveBeenCalledTimes(4);
+  });
+
+  it("Image", () => {
+    render(
+      <Image
+        borderRadius="25px"
+        src="/profile2.png"
+        boxSize="400px"
+        alt="test"
+      />
+    );
+    const ImageElement: HTMLImageElement = screen.getByAltText("test");
+    expect(ImageElement.src).toContain("/profile2.png");
+  });
+
+  it("Spacer", () => {
+    render(<HeightSpacer spacePixel="100px" />);
+    const div = document.getElementsByClassName("spacer-element");
+    expect(div[0]).toHaveStyle({ height: "100px" });
   });
 });
