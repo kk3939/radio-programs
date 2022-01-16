@@ -7,6 +7,14 @@ import {
   WhiteButton,
 } from "../src/components/Common/Buttons/NormalButton";
 import { Text } from "../src/components/Common/Text/Text";
+import {
+  AddIconButton,
+  CloseIconButton,
+  DeleteIconButton,
+  EditIconButton,
+  LogoutIconButton,
+} from "../src/components/Common/Buttons/IconButton";
+import Footer from "../src/components/Common/Footer/Footer";
 
 describe("Common Unit Test", () => {
   it("Text", () => {
@@ -15,6 +23,7 @@ describe("Common Unit Test", () => {
     render(<Text fontSize="2xl" text="test2" />);
     expect(screen.getByText("test2")).toBeInTheDocument();
   });
+
   it("Normal Buttons", () => {
     const onClick = jest.fn();
     render(<WhiteButton onClick={onClick} text="test1" />);
@@ -27,5 +36,26 @@ describe("Common Unit Test", () => {
     fireEvent.click(screen.getByText("test2"));
     fireEvent.click(screen.getByText("test3"));
     expect(onClick).toHaveBeenCalledTimes(3);
+  });
+
+  it("Icon Buttons", () => {
+    const onClick = jest.fn();
+    render(<CloseIconButton onClick={onClick} />);
+    render(<EditIconButton onClick={onClick} />);
+    render(<LogoutIconButton onClick={onClick} />);
+    render(<AddIconButton onClick={onClick} />);
+    render(<DeleteIconButton onClick={onClick} />);
+    const renderedButtons: HTMLElement[] = screen.getAllByRole("button");
+    renderedButtons.forEach((element) => {
+      fireEvent.click(element);
+    });
+    expect(onClick).toHaveBeenCalledTimes(5);
+  });
+
+  it("Footer", () => {
+    render(<Footer />);
+    expect(
+      screen.getByText("kyosuke kubo, All rights reserved.")
+    ).toBeInTheDocument();
   });
 });
