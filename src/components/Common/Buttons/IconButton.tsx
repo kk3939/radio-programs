@@ -13,10 +13,7 @@ import { IconButtonProps } from "../../../types/global";
 export const CloseIconButton: React.VFC<IconButtonProps> = ({ onClick }) => {
   return (
     <>
-      <Tooltip
-        label="close this edit page"
-        aria-label="close button description"
-      >
+      <Tooltip label="close this edit page">
         <CloseIcon
           role="button"
           aria-label="close"
@@ -33,7 +30,7 @@ export const CloseIconButton: React.VFC<IconButtonProps> = ({ onClick }) => {
 export const EditIconButton: React.VFC<IconButtonProps> = ({ onClick }) => {
   return (
     <>
-      <Tooltip label="edit your page" aria-label="edit Button description">
+      <Tooltip label="edit your page">
         <EditIcon
           role="button"
           aria-label="edit"
@@ -66,7 +63,7 @@ export const LogoutIconButton: React.VFC<IconButtonProps> = ({ onClick }) => {
 export const SaveIconButton: React.VFC<IconButtonProps> = ({ onClick }) => {
   return (
     <>
-      <Tooltip label="save your input" aria-label="save button description">
+      <Tooltip label="save your input">
         <CheckIcon
           role="button"
           aria-label="save"
@@ -83,7 +80,7 @@ export const SaveIconButton: React.VFC<IconButtonProps> = ({ onClick }) => {
 export const AddIconButton: React.VFC<IconButtonProps> = ({ onClick }) => {
   return (
     <>
-      <Tooltip label="add a new radio" aria-label="add button description">
+      <Tooltip label="add a new radio">
         <AddIcon
           role="button"
           aria-label="add radio"
