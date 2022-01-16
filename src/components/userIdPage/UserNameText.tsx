@@ -29,7 +29,7 @@ const UserNameText: React.VFC<Props> = ({ userProps }) => {
       {isEditable(isEdit, userProps, userId) ? (
         <Box mt={3} mb={3} w="40%">
           <Input
-            placeholder={returnUserNameFromProps(userProps)}
+            placeholder={returnUserNameFromProps(userProps.name)}
             value={returnUserNameFromState(userName)}
             onChange={(event) =>
               dispatch(userSlice.actions.updateUserName(event.target.value))
@@ -43,7 +43,7 @@ const UserNameText: React.VFC<Props> = ({ userProps }) => {
           pr={3}
           pl={3}
           pb={3}
-          text={returnUserNameFromProps(userProps)}
+          text={returnUserNameFromProps(userProps.name)}
           color="black"
         />
       )}
