@@ -43,7 +43,7 @@ const UserPage: React.VFC<UserProps> = (userProps) => {
               <Image
                 borderRadius="full"
                 boxSize="100px"
-                src={returnPhotoUrl(userProps)}
+                src={returnPhotoUrl(userProps.photoUrl)}
                 alt="user"
               />
               <UserNameText userProps={userProps} />

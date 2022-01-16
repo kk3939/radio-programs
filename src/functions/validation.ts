@@ -1,22 +1,17 @@
 import { UserProps } from "../types/global";
 
-export const returnUserNameFromProps = (arg: UserProps): string => {
-  if (arg.name === null) {
-    return "This user's name isn't setup.";
-  }
-  return arg.name;
-};
-
-export const returnUserNameFromState = (arg: string | null): string => {
+export const returnUserNameFromProps = (arg: string | null): string => {
   if (arg === null) {
     return "This user's name isn't setup.";
   }
   return arg;
 };
 
-export const returnPhotoUrl = (arg: UserProps): string | undefined => {
-  if (arg.photoUrl === null) {
+export const returnUserNameFromState = returnUserNameFromProps;
+
+export const returnPhotoUrl = (arg: string | null): string | undefined => {
+  if (arg === null) {
     return undefined;
   }
-  return arg.photoUrl;
+  return arg;
 };
