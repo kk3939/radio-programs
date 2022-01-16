@@ -6,6 +6,7 @@ import { FcGoogle } from "react-icons/fc";
 /**
  * This component is Button whose background color is white and text color cyan.
  * @param onClick click function
+ * @param text text inside button
  * @returns Button ReactElement
  */
 export const WhiteButton: React.VFC<NormalButtonProps> = ({
