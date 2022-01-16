@@ -11,6 +11,7 @@ export const addRadio = (
 ) => {
   if (radios.length === 20) {
     alert("Sorry, radio's limits is 20.");
+    return;
   }
   dispatch(reducer);
 };
