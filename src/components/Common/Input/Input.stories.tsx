@@ -2,7 +2,6 @@
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 import { NormalButtonProps } from "../../../types/global";
 import { default as InputComponent } from "./Input";
-import Layout from "../Layouts/Layout";
 import { useState } from "react";
 
 export default {
