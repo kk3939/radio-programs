@@ -18,3 +18,10 @@ export const Image: ComponentStory<typeof ImageComponent> = (args) => {
     </>
   );
 };
+
+Image.args = {
+  borderRadius: "50px",
+  src: "/profile2.png",
+  boxSize: "400px",
+  alt: "sample user page UI",
+};
