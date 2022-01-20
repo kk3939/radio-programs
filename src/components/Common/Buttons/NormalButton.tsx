@@ -15,6 +15,7 @@ export const WhiteButton: React.VFC<NormalButtonProps> = ({
 }) => {
   return (
     <Button
+      bg="white"
       fontSize="lg"
       border="1px"
       color="cyan.700"

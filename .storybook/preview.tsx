@@ -9,15 +9,7 @@ import { withPerformance } from "storybook-addon-performance"
 const withChakra = (StoryFn: Function, context: StoryContext) => {
 
   return (
-    <ChakraProvider theme={extendTheme({
-      styles: {
-        global: {
-          body: {
-            backgroundColor: "cyan.700",
-          },
-        },
-      },
-    })}>
+    <ChakraProvider theme={extendTheme()}>
       <StoryFn />
     </ChakraProvider>
   )
