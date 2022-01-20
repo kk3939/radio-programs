@@ -1,0 +1,21 @@
+name: CI Test 
+
+on: 
+  pull_request:
+    branches:
+      - main
+      - develop
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: setup nodejs
+      uses: actions/setup-node@v2
+      with:
+        node-version: '14'
+    - name: setup yarn
+      run: yarn install
+    - name: 
+      run: yarn run test
