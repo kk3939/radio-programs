@@ -8,7 +8,9 @@
     "lint": "next lint",
     "test": "jest",
     "storybook": "start-storybook -s public",
-    "build-storybook": "build-storybook -s public -o /storybookBuild"
+    "build-storybook": "build-storybook -s public -o /storybookBuild",
+    "cy:open": "cypress open",
+    "cy:run": "cypress run"
   },
   "dependencies": {
     "@chakra-ui/icons": "^1.1.1",
